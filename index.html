@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>고건우 | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">고건우</a>
+    <ul class="nav-links">
+      <li><a href="#about">소개</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#contact">연락</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-label fadeup">PORTFOLIO 2025</p>
+    <h1 class="hero-name fadeup delay-1">
+      안녕하세요,<br>저는 <span>고건우</span>입니다.
+    </h1>
+    <p class="hero-desc fadeup delay-2">
+      사용자 경험을 중심에 두는 풀스택 개발자입니다.<br>
+      아이디어를 실제로 동작하는 제품으로 만드는 것을 좋아합니다.
+    </p>
+    <div class="hero-cta fadeup delay-3">
+      <a href="#projects" class="btn btn-primary">프로젝트 보기 →</a>
+      <a href="#contact" class="btn btn-outline">연락하기</a>
+    </div>
+    <p class="scroll-hint fadeup delay-4">SCROLL</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">01 · ABOUT ME</p>
+    <h2 class="section-title">나에 대해서</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          풀스택 개발자로, 사용자의 문제를 기술로 해결하는 데 관심이 많습니다.
+          React와 Node.js를 주로 사용하며, 최근에는 AI/ML 통합에 빠져있습니다.
+        </p>
+        <p>
+          팀과 함께 성장하는 것을 즐기고, 코드 리뷰와 문서화를 중요하게 생각합니다.
+          현재 [회사명 또는 학교명]에서 활동하고 있습니다.
+        </p>
+        <div class="skills-list">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Next.js</span>
+        </div>
+      </div>
+
+      <!-- 관심 분야 카드 -->
+      <div class="interest-list">
+        <div class="interest-card">
+          <div class="interest-title">🌐 웹 성능 최적화</div>
+          <div class="interest-desc">빠르고 가벼운 사용자 경험에 관심이 많습니다.</div>
+        </div>
+        <div class="interest-card">
+          <div class="interest-title">🤖 AI · ML 통합</div>
+          <div class="interest-desc">LLM을 실제 서비스에 연결하는 실험을 즐깁니다.</div>
+        </div>
+        <div class="interest-card">
+          <div class="interest-title">🎨 UI · UX 디자인</div>
+          <div class="interest-desc">코드만큼 인터페이스의 디테일을 중요하게 생각합니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">02 · PROJECTS</p>
+    <h2 class="section-title">프로젝트</h2>
+
+    <div class="projects-grid">
+
+      <!-- 01 -->
+      <a href="projects/project1.html" class="project-card">
+        <div class="project-thumb">
+          <!-- <img src="assets/images/project1-thumb.png" alt="프로젝트 1"> -->
+          <span>썸네일 이미지</span>
+          <span class="project-num">01</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">MongoDB</span>
+          </div>
+          <h3 class="project-title">프로젝트 제목 01</h3>
+          <p class="project-desc">
+            이 프로젝트에 대한 간략한 설명입니다. 어떤 문제를 해결했는지,
+            주요 기능은 무엇인지 2~3문장으로 작성하세요.
+            실제 사용자가 느낄 수 있는 가치를 중심으로 설명하면 좋습니다.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/username/project1" class="project-link" onclick="event.stopPropagation()">↗ GitHub</a>
+            <a href="https://project1-demo.vercel.app" class="project-link" onclick="event.stopPropagation()">↗ 라이브 데모</a>
+          </div>
+        </div>
+      </a>
+
+      <!-- 02 -->
+      <a href="projects/project2.html" class="project-card">
+        <div class="project-thumb">
+          <!-- <img src="assets/images/project2-thumb.png" alt="프로젝트 2"> -->
+          <span>썸네일 이미지</span>
+          <span class="project-num">02</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">PostgreSQL</span>
+          </div>
+          <h3 class="project-title">프로젝트 제목 02</h3>
+          <p class="project-desc">핵심 기능과 사용 기술 위주로 간결하게 정리합니다.</p>
+          <div class="project-links">
+            <a href="https://github.com/username/project2" class="project-link" onclick="event.stopPropagation()">↗ GitHub</a>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">↗ 라이브 데모</a>
+          </div>
+        </div>
+      </a>
+
+      <!-- 03 -->
+      <a href="projects/project3.html" class="project-card">
+        <div class="project-thumb">
+          <!-- <img src="assets/images/project3-thumb.png" alt="프로젝트 3"> -->
+          <span>썸네일 이미지</span>
+          <span class="project-num">03</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Supabase</span>
+          </div>
+          <h3 class="project-title">프로젝트 제목 03</h3>
+          <p class="project-desc">핵심 기능과 사용 기술 위주로 간결하게 정리합니다.</p>
+          <div class="project-links">
+            <a href="https://github.com/username/project3" class="project-link" onclick="event.stopPropagation()">↗ GitHub</a>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">↗ 라이브 데모</a>
+          </div>
+        </div>
+      </a>
+
+      <!-- 04 -->
+      <a href="projects/project4.html" class="project-card">
+        <div class="project-thumb">
+          <!-- <img src="assets/images/project4-thumb.png" alt="프로젝트 4"> -->
+          <span>썸네일 이미지</span>
+          <span class="project-num">04</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">React Native</span>
+            <span class="project-tag">Firebase</span>
+          </div>
+          <h3 class="project-title">프로젝트 제목 04</h3>
+          <p class="project-desc">핵심 기능과 사용 기술 위주로 간결하게 정리합니다.</p>
+          <div class="project-links">
+            <a href="https://github.com/username/project4" class="project-link" onclick="event.stopPropagation()">↗ GitHub</a>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">↗ 라이브 데모</a>
+          </div>
+        </div>
+      </a>
+
+      <!-- 05 -->
+      <a href="projects/project5.html" class="project-card">
+        <div class="project-thumb">
+          <!-- <img src="assets/images/project5-thumb.png" alt="프로젝트 5"> -->
+          <span>썸네일 이미지</span>
+          <span class="project-num">05</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Vue.js</span>
+            <span class="project-tag">Django</span>
+            <span class="project-tag">Redis</span>
+          </div>
+          <h3 class="project-title">프로젝트 제목 05</h3>
+          <p class="project-desc">핵심 기능과 사용 기술 위주로 간결하게 정리합니다.</p>
+          <div class="project-links">
+            <a href="https://github.com/username/project5" class="project-link" onclick="event.stopPropagation()">↗ GitHub</a>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">↗ 라이브 데모</a>
+          </div>
+        </div>
+      </a>
+
+      <!-- 06 -->
+      <a href="projects/project6.html" class="project-card">
+        <div class="project-thumb">
+          <!-- <img src="assets/images/project6-thumb.png" alt="프로젝트 6"> -->
+          <span>썸네일 이미지</span>
+          <span class="project-num">06</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Spring Boot</span>
+            <span class="project-tag">MySQL</span>
+          </div>
+          <h3 class="project-title">프로젝트 제목 06</h3>
+          <p class="project-desc">핵심 기능과 사용 기술 위주로 간결하게 정리합니다.</p>
+          <div class="project-links">
+            <a href="https://github.com/username/project6" class="project-link" onclick="event.stopPropagation()">↗ GitHub</a>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">↗ 라이브 데모</a>
+          </div>
+        </div>
+      </a>
+
+      <!-- 07 -->
+      <a href="projects/project7.html" class="project-card">
+        <div class="project-thumb">
+          <!-- <img src="assets/images/project7-thumb.png" alt="프로젝트 7"> -->
+          <span>썸네일 이미지</span>
+          <span class="project-num">07</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Dart</span>
+          </div>
+          <h3 class="project-title">프로젝트 제목 07</h3>
+          <p class="project-desc">핵심 기능과 사용 기술 위주로 간결하게 정리합니다.</p>
+          <div class="project-links">
+            <a href="https://github.com/username/project7" class="project-link" onclick="event.stopPropagation()">↗ GitHub</a>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">↗ 라이브 데모</a>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">03 · CONTACT</p>
+    <h2 class="section-title">연락하기</h2>
+    <div class="contact-inner">
+      <p>
+        새로운 기회나 협업 제안을 환영합니다.<br>
+        아래 링크를 통해 편하게 연락 주세요.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:yourname@email.com" class="btn btn-primary">이메일 보내기 →</a>
+        <a href="https://github.com/username" class="btn btn-outline" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/username" class="btn btn-outline" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 고건우. ALL RIGHTS RESERVED.</p>
+    <p>BUILT WITH HTML / CSS / JS</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
