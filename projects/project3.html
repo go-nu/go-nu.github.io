@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GONGGAN | 고건우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">고건우</a>
+    <a href="../index.html#projects" class="nav-back">목록으로</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="hero-meta fadeup">
+      <span class="hero-num">PROJECT 03</span>
+      <span class="hero-divider"></span>
+      <span class="hero-category">Java 웹 풀스택</span>
+    </div>
+    <h1 class="detail-title fadeup delay-1">
+      K-Culture 종합 플랫폼<br><span>GONGGAN</span>
+    </h1>
+    <p class="detail-summary fadeup delay-2">
+      외국인 및 국내 사용자를 위한 K-Food · K-Beauty · Location 정보 제공 웹 서비스.
+      Java Servlet/JSP MVC 패턴으로 구현한 팀 프로젝트로, 팀장을 맡아 게시판 시스템·회원 기능·관리자 페이지 전반을 담당했습니다.
+    </p>
+    <div class="detail-tags fadeup delay-2">
+      <span class="detail-tag">Java 17</span>
+      <span class="detail-tag">Servlet / JSP</span>
+      <span class="detail-tag">MySQL 8</span>
+      <span class="detail-tag">Apache Tomcat 10.1</span>
+      <span class="detail-tag">Bootstrap 5</span>
+      <span class="detail-tag">Naver Maps API</span>
+    </div>
+    <div class="detail-links fadeup delay-3">
+      <a href="https://github.com/go-nu/GONGGAN" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
+    </div>
+  </section>
+
+  <!-- 대표 썸네일 -->
+  <div class="thumb-wrap">
+    <img src="../assets/images/project3/메인.png" alt="GONGGAN 대표 이미지">
+  </div>
+
+  <!-- BODY -->
+  <div class="detail-body">
+
+    <!-- 메인 콘텐츠 -->
+    <main class="detail-main">
+
+      <!-- 01 · 프로젝트 개요 -->
+      <div class="content-section">
+        <p class="content-label">01 · OVERVIEW</p>
+        <h2 class="content-title">프로젝트 개요</h2>
+        <p class="content-text">
+          GONGGAN(공간)은 K-Food, K-Beauty, Location 세 가지 카테고리로 한국 문화를 소개하는 종합 정보 웹 서비스입니다.
+          사용자는 카테고리별 게시판에 글을 작성하고, 화장품 정보를 탐색하며, 네이버 지도 API와 연동된 관광지·체험 활동을 예약할 수 있습니다.
+          관리자 페이지를 통해 콘텐츠 전반을 관리하고 예약 현황을 통계 차트로 파악할 수 있습니다.
+        </p>
+        <p class="content-text">
+          팀장으로서 전체 일정을 조율하고 역할을 분배했으며, 게시판 시스템 연동·회원 기능·관리자 페이지를 직접 구현했습니다.
+          Java Servlet/JSP MVC 패턴을 기반으로 설계하여 Controller-DAO-View 계층을 명확히 분리했습니다.
+        </p>
+      </div>
+
+      <!-- 03 · 아키텍처 / 데이터 흐름 -->
+      <div class="content-section">
+        <p class="content-label">03 · ARCHITECTURE</p>
+        <h2 class="content-title">시스템 구조 및 데이터 흐름</h2>
+        <p class="content-text" style="margin-bottom: 1.5rem;">
+          Java Servlet/JSP MVC 패턴을 기반으로 설계했습니다.
+          사용자의 <code>*.do</code> URL 요청은 Servlet Controller가 받아 처리하고, DAO를 통해 MySQL과 통신한 뒤 JSP View로 결과를 렌더링합니다.
+        </p>
+
+        <div class="flow-wrap">
+          <div class="flow-row">
+            <div class="flow-node client">사용자<br>(브라우저)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">*.do 요청</div>
+            </div>
+            <div class="flow-node server">Servlet<br>Controller</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">JDBC</div>
+            </div>
+            <div class="flow-node db">MySQL 8<br>(fs_semi)</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <div class="flow-row">
+            <div class="flow-node server">Servlet<br>Controller</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">setAttribute</div>
+            </div>
+            <div class="flow-node server">JSP View<br>(렌더링)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">HTML 응답</div>
+            </div>
+            <div class="flow-node client">사용자<br>(브라우저)</div>
+          </div>
+
+          <div class="flow-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background: var(--surface); border: 1.5px solid var(--border);"></div>
+              클라이언트
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #e8f4ee; border: 1.5px solid var(--accent2);"></div>
+              서버 / 앱
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #f0f7f4; border: 1.5px solid var(--accent);"></div>
+              데이터베이스
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · 주요 기능 (내 담당 파트 중심) -->
+      <div class="content-section">
+        <p class="content-label">04 · FEATURES</p>
+        <h2 class="content-title">담당 기능 상세</h2>
+        <div class="feature-list">
+
+          <div class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>카테고리별 게시판 연동 (BoardController)</strong>
+              <span>
+                K-Food · K-Beauty · Location 세 섹션이 하나의 <code>BoardController</code> 서블릿을 공유합니다.
+                요청 URL(<code>*.do</code>)과 <code>category</code> 파라미터로 분기 처리하여
+                게시글 목록·상세·작성·수정·삭제를 카테고리에 맞게 라우팅했습니다.
+                파일 첨부(<code>multipart/form-data</code>), 키워드 검색, 페이지네이션, 좋아요(AJAX), 댓글 CRUD까지 포함합니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>회원 기능 전반</strong>
+              <span>
+                회원가입(유효성 검사 + Bootstrap 모달 경고), 로그인/로그아웃(세션 기반), 아이디·비밀번호 찾기,
+                마이페이지(내 게시글·예약 내역 조회), 회원정보 수정, 회원 탈퇴(비밀번호 재확인 후 처리)를 구현했습니다.
+                로그인 성공·실패 결과를 Bootstrap 모달로 피드백하며, 세션 속성(<code>id</code>, <code>name</code>, <code>gender</code> 등)에 사용자 정보를 저장합니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>관리자 페이지 — 체험 활동 관리 및 예약 현황</strong>
+              <span>
+                체험 활동 CRUD(등록·수정·삭제, D-day 뱃지 표시), 활동별 예약 내역 인라인 펼치기(Bootstrap Collapse),
+                전체 프로그램 테이블에서 예약자·연락처·인원 현황 확인, 지도 데이터(map_loc) CRUD를 구현했습니다.
+                통계 차트는 Chart.js의 Bar + Line 혼합 차트로 월별 전체·남성·여성 방문자 수를 시각화했습니다.
+                관리자 전용 공지 게시글을 food / beauty / location 카테고리별로 작성할 수 있는 진입점도 제공합니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-num">4</div>
+            <div class="feature-text">
+              <strong>팀장 — 역할 분담 · 페이지 디자인 · Git 관리</strong>
+              <span>
+                5인 팀의 팀장으로서 기능 단위로 역할을 분담하고 주간 진척을 조율했습니다.
+                전체 페이지 레이아웃과 공통 컴포넌트(header, footer, 슬라이드 배너) 디자인 가이드를 수립했으며,
+                GitHub 저장소를 관리하고 브랜치 전략을 운영해 병합 충돌을 최소화했습니다.
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 05 · 트러블슈팅 -->
+      <div class="content-section">
+        <p class="content-label">05 · TROUBLE SHOOTING</p>
+        <h2 class="content-title">문제 해결 과정</h2>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: multipart/form-data 환경에서 일반 파라미터 누락</p>
+          <p class="trouble-a">
+            게시글 수정 시 파일 첨부와 일반 텍스트 필드를 함께 전송하면 <code>request.getParameter()</code>가 <code>null</code>을 반환했습니다.
+            <code>enctype="multipart/form-data"</code>를 사용하면 파라미터가 Part 객체로 처리되어 기존 방식으로 값을 꺼낼 수 없었기 때문입니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: Part 스트림에서 직접 값을 읽는 헬퍼 메서드 작성</p>
+          <p class="trouble-a">
+            <code>getValueFromPart(Part part)</code> 메서드를 작성해 <code>InputStreamReader</code>로 Part 스트림을 UTF-8로 읽어 문자열로 변환했습니다.
+            파일 파트와 텍스트 파트를 분리해 처리함으로써 수정 기능에서 제목·내용·카테고리를 안정적으로 받을 수 있게 되었습니다.
+          </p>
+        </div>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: 단일 게시판을 카테고리별로 분리할 때 URL 라우팅 혼선</p>
+          <p class="trouble-a">
+            food · beauty · location 세 섹션이 동일한 <code>BoardController</code>를 공유하다 보니,
+            카테고리 파라미터가 누락된 요청에서 기본값 처리가 없어 엉뚱한 목록이 노출되거나 리다이렉트 URL이 깨지는 문제가 발생했습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: category 파라미터 기본값 처리 및 모든 분기에 명시적 전달</p>
+          <p class="trouble-a">
+            컨트롤러의 모든 분기 지점에서 <code>category</code> 파라미터가 null이거나 빈 문자열이면 <code>"food"</code>로 치환하는 방어 코드를 추가했습니다.
+            리다이렉트 URL에도 <code>category</code>를 쿼리스트링으로 명시적으로 포함시켜, 목록·상세·수정·삭제 어느 흐름에서도 카테고리 맥락이 유지되도록 했습니다.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 06 · 회고 -->
+      <div class="content-section">
+        <p class="content-label">06 · RETROSPECTIVE</p>
+        <h2 class="content-title">프로젝트 회고</h2>
+        <div class="retro-grid">
+          <div class="retro-card">
+            <div class="retro-icon">✅</div>
+            <div class="retro-label">잘 된 점</div>
+            <p class="retro-text">
+              MVC 계층 분리를 일관되게 유지하며 BoardController 하나로 카테고리별 게시판을 깔끔하게 통합했습니다.
+              팀장으로서 역할 분담과 Git 브랜치 관리를 주도해 충돌 없이 3주 안에 기능을 완성한 것도 뿌듯합니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🔧</div>
+            <div class="retro-label">아쉬운 점</div>
+            <p class="retro-text">
+              비밀번호를 평문으로 저장한 점, 관리자 인증이 Tomcat Role 기반으로만 처리된 점이 보안 측면에서 미흡했습니다.
+              외부 서버 배포 경험 없이 로컬 환경에만 머문 것도 아쉽습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">💡</div>
+            <div class="retro-label">배운 점</div>
+            <p class="retro-text">
+              Java Servlet/JSP MVC 패턴의 요청 처리 흐름을 직접 구현하며 웹 서버 동작 원리를 깊이 이해했습니다.
+              Chart.js로 혼합 차트를 구성하면서 데이터 시각화의 기초도 익혔습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🚀</div>
+            <div class="retro-label">다음 목표</div>
+            <p class="retro-text">
+              Spring Boot와 JPA로 동일한 서비스를 마이그레이션해 프레임워크가 해소해 주는 보일러플레이트를 체감하고,
+              클라우드 환경(AWS EC2 + RDS)에 직접 배포해 운영 경험을 쌓고 싶습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 사이드바 -->
+    <aside class="detail-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">PROJECT INFO</p>
+        <div class="info-row">
+          <span class="info-key">기간</span>
+          <span class="info-val">2025.04 – 2025.05</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">유형</span>
+          <span class="info-val">팀 프로젝트 (5인)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">역할</span>
+          <span class="info-val">팀장<br>게시판 연동<br>회원 기능<br>관리자 페이지<br>페이지 디자인<br>Git 관리</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">상태</span>
+          <span class="info-val">로컬 배포 (Tomcat)</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">TECH STACK</p>
+        <div class="stack-list">
+          <div class="stack-item"><span class="stack-dot"></span>Java 17</div>
+          <div class="stack-item"><span class="stack-dot"></span>Servlet / JSP (MVC)</div>
+          <div class="stack-item"><span class="stack-dot"></span>MySQL 8.x</div>
+          <div class="stack-item"><span class="stack-dot"></span>Apache Tomcat 10.1</div>
+          <div class="stack-item"><span class="stack-dot"></span>Bootstrap 5 / jQuery 3.6</div>
+          <div class="stack-item"><span class="stack-dot"></span>Naver Maps API</div>
+          <div class="stack-item"><span class="stack-dot"></span>Chart.js</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">LINKS</p>
+        <div class="sidebar-links">
+          <a href="https://github.com/go-nu/GONGGAN" class="sidebar-link" target="_blank">↗ GitHub 저장소</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- 다음 프로젝트 -->
+  <div class="next-section">
+    <div class="next-inner">
+      <div>
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project4.html" class="next-title">프로젝트 04 →</a>
+      </div>
+      <a href="project4.html" class="next-arrow">→</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 고건우. ALL RIGHTS RESERVED.</p>
+    <p>BUILT WITH HTML / CSS / JS</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

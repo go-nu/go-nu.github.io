@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WooriZip | 고건우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">고건우</a>
+    <a href="../index.html#projects" class="nav-back">목록으로</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="hero-meta fadeup">
+      <span class="hero-num">PROJECT 04</span>
+      <span class="hero-divider"></span>
+      <span class="hero-category">웹 풀스택 · AI 추천</span>
+    </div>
+    <h1 class="detail-title fadeup delay-1">
+      인테리어 쇼핑 플랫폼<br><span>WooriZip</span>
+    </h1>
+    <p class="detail-summary fadeup delay-2">
+      Spring Boot 기반 인테리어 제품 쇼핑몰. 회원·쿠폰 시스템부터 사용자 행동 로그 기반
+      LightFM 협업 필터링 추천 엔진까지 직접 설계·구현한 팀 프로젝트입니다.
+    </p>
+    <div class="detail-tags fadeup delay-2">
+      <span class="detail-tag">Java 17</span>
+      <span class="detail-tag">Spring Boot 3.3</span>
+      <span class="detail-tag">Spring Security</span>
+      <span class="detail-tag">JPA / Hibernate</span>
+      <span class="detail-tag">MySQL 8.0</span>
+      <span class="detail-tag">LightFM</span>
+      <span class="detail-tag">FastAPI</span>
+      <span class="detail-tag">Thymeleaf</span>
+    </div>
+    <div class="detail-links fadeup delay-3">
+      <a href="https://github.com/go-nu/WooriZIP" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
+    </div>
+  </section>
+
+  <!-- 대표 썸네일 -->
+  <div class="thumb-wrap">
+    <img src="docs/images/우리집_메인.png" alt="WooriZip 메인 화면" />
+  </div>
+
+  <!-- BODY -->
+  <div class="detail-body">
+
+    <!-- 메인 콘텐츠 -->
+    <main class="detail-main">
+
+      <!-- 01 · 프로젝트 개요 -->
+      <div class="content-section">
+        <p class="content-label">01 · OVERVIEW</p>
+        <h2 class="content-title">프로젝트 개요</h2>
+        <p class="content-text">
+          WooriZip은 인테리어 제품 쇼핑과 커뮤니티를 통합한 e-commerce 플랫폼입니다.
+          단순한 CRUD 쇼핑몰에 그치지 않고, 사용자의 실제 행동(상품 조회·장바구니 추가·구매)을
+          DB에 자동으로 누적하고 이를 LightFM 협업 필터링 모델의 학습 데이터로 활용하는
+          개인화 추천 시스템을 직접 설계했습니다.
+        </p>
+        <p class="content-text">
+          5인 팀 프로젝트에서 <strong>팀장</strong>을 맡아 기능별 역할 분배,
+          Git 브랜치 전략(feature → develop → main), PR 리뷰 프로세스를 주도했습니다.
+          개인 담당 파트는 <strong>회원 관리 로직 전체, 쿠폰 시스템 전체,
+          사용자 행동 로그 수집 → 추천 학습 데이터셋 구성 → LightFM 모델 학습
+          → FastAPI 추론 서버 구현 → cold start fallback, 그리고 관리자 대시보드</strong>입니다.
+        </p>
+      </div>
+
+      <!-- 02 · 화면 스크린샷 -->
+      <div class="content-section">
+        <p class="content-label">02 · SCREENS</p>
+        <h2 class="content-title">주요 화면</h2>
+        <div class="gallery-grid">
+
+          <div class="gallery-item full">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_메인.png" alt="WooriZip 메인 화면" />
+            </div>
+            <div class="gallery-caption">
+              <strong>메인 / 홈 화면</strong>
+              슬라이드 배너, 카테고리 탐색, 최신 상품을 표시합니다.
+              로그인한 사용자에게는 LightFM 기반 개인화 추천 상품이 노출되며,
+              신규 사용자에게는 인기 상품 fallback이 적용됩니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_상품목록.png" alt="상품 목록 페이지" />
+            </div>
+            <div class="gallery-caption">
+              <strong>상품 목록</strong>
+              카테고리 필터, 키워드 검색, 페이징을 제공합니다.
+              상품 페이지 진입 시 RecommendInterceptor가 VIEW(weight=1) 로그를 자동 기록합니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_상세.png" alt="상품 상세 페이지" />
+            </div>
+            <div class="gallery-caption">
+              <strong>상품 상세</strong>
+              옵션 선택(색상·사이즈), 리뷰 평점, Q&A 계층형 댓글을 제공합니다.
+              장바구니 추가 시 CART(weight=3) 로그가 인터셉터를 통해 자동 저장됩니다.
+            </div>
+          </div>
+
+          <div class="gallery-item full">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_쿠폰관리.png" alt="관리자 쿠폰 관리" />
+            </div>
+            <div class="gallery-caption">
+              <strong>관리자 — 쿠폰 관리</strong>
+              쿠폰 생성(정액·정률), 활성화/비활성화 토글, 발급 잔여 수량 추적을 관리합니다.
+              usageLimit이 0이 되거나 만료일이 지나면 비활성 처리되어 사용자에게 노출되지 않습니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_쿠폰1.png" alt="사용자 쿠폰 수령" />
+            </div>
+            <div class="gallery-caption">
+              <strong>사용자 쿠폰 수령</strong>
+              활성 쿠폰 목록 조회 및 수령이 가능합니다.
+              1인 1쿠폰 중복 수령 방지, 수량 소진 즉시 비활성 처리가 서비스 레이어에서 이뤄집니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_마이페이지.png" alt="마이페이지" />
+            </div>
+            <div class="gallery-caption">
+              <strong>마이페이지</strong>
+              회원 정보 수정(비밀번호·주소 등), 보유 쿠폰 현황, 주문 내역 조회를 제공합니다.
+              탈퇴 시 주문·장바구니·리뷰가 트랜잭션 안에서 순차적으로 삭제됩니다.
+            </div>
+          </div>
+
+          <div class="gallery-item full">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_주문내역.png" alt="관리자 주문 대시보드" />
+            </div>
+            <div class="gallery-caption">
+              <strong>관리자 — 주문 대시보드</strong>
+              최근 7일 일별 주문 추이(꺾은선)와 카테고리별 판매량(막대)을 Chart.js로 시각화합니다.
+              주문 상태 변경(ORDERED → PAID → SHIPPING → DELIVERED) 및 페이징 주문 목록을 제공합니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_주문내역2.png" alt="주문 현황 요약" />
+            </div>
+            <div class="gallery-caption">
+              <strong>관리자 — 주문 현황 요약</strong>
+              전체 기간 또는 이번 달 카테고리별 판매량을 라디오 버튼으로 전환하여 조회합니다.
+              Ajax로 차트 데이터를 동적으로 교체합니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="docs/images/우리집_주문.png" alt="주문 페이지" />
+            </div>
+            <div class="gallery-caption">
+              <strong>주문 / 결제</strong>
+              주문서 작성 → 쿠폰 적용 → 결제 → 주문 완료 플로우입니다.
+              재고 부족·결제 실패 시 예외 처리와 트랜잭션 롤백이 적용됩니다.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 03 · 아키텍처 -->
+      <div class="content-section">
+        <p class="content-label">03 · ARCHITECTURE</p>
+        <h2 class="content-title">시스템 구조 및 데이터 흐름</h2>
+        <p class="content-text" style="margin-bottom: 1.5rem;">
+          Spring MVC 단일 서버와 Python FastAPI 추천 서버(Google Colab + ngrok)가 분리된 구조입니다.
+          추천 요청 시에만 HTTP POST 방식으로 통신하므로 추천 서버 장애가 메인 서버에 전파되지 않습니다.
+        </p>
+
+        <div class="flow-wrap">
+          <!-- Row 1: 일반 웹 요청 흐름 -->
+          <div class="flow-row">
+            <div class="flow-node client">사용자<br>(브라우저)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">HTTP 요청</div>
+            </div>
+            <div class="flow-node server">Spring MVC<br>Controller</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">Service / JPA</div>
+            </div>
+            <div class="flow-node db">MySQL 8.0</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <!-- Row 2: 행동 로그 수집 -->
+          <div class="flow-row">
+            <div class="flow-node client">사용자<br>행동</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">preHandle()</div>
+            </div>
+            <div class="flow-node server">Recommend<br>Interceptor</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">saveLog()</div>
+            </div>
+            <div class="flow-node db">RecommendLog<br>DB</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <!-- Row 3: 추천 API 흐름 -->
+          <div class="flow-row">
+            <div class="flow-node server">Spring Boot<br>(추천 요청)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">POST /recommend</div>
+            </div>
+            <div class="flow-node ext">FastAPI<br>(Colab+ngrok)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">predict()</div>
+            </div>
+            <div class="flow-node ext">LightFM<br>모델</div>
+          </div>
+
+          <div class="flow-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background: var(--surface); border: 1.5px solid var(--border);"></div>
+              클라이언트 / 사용자
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #e8f4ee; border: 1.5px solid var(--accent2);"></div>
+              Spring Boot 서버
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #f0f7f4; border: 1.5px solid var(--accent);"></div>
+              데이터베이스
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #fdf8f0; border: 1.5px dashed var(--border);"></div>
+              외부 서비스 (Colab)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · 추천 시스템 상세 -->
+      <div class="content-section">
+        <p class="content-label">04 · RECOMMENDATION SYSTEM</p>
+        <h2 class="content-title">LightFM 협업 필터링 추천 엔진</h2>
+        <p class="content-text">
+          사용자 행동 로그 기반의 협업 필터링 추천 시스템을 처음부터 직접 설계했습니다.
+          로그 수집 → 데이터셋 구성 → 모델 학습 → API 서빙 → cold start 처리의
+          전체 파이프라인을 단독으로 담당했습니다.
+        </p>
+
+        <!-- 행동 로그 수집 -->
+        <p class="content-text" style="margin-top: 1.8rem; font-weight: 700; color: var(--text);">
+          ① 행동 로그 자동 수집 — RecommendInterceptor
+        </p>
+        <p class="content-text">
+          Spring의 <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">HandlerInterceptor</code>를
+          구현한 <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">RecommendInterceptor</code>가
+          컨트롤러 진입 전(<code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">preHandle</code>)
+          요청 URI를 분석해 행동 유형별로 로그를 자동 저장합니다.
+          컨트롤러 코드를 수정하지 않고 크로스커팅 관심사(cross-cutting concern)로 처리됩니다.
+        </p>
+        <div class="feature-list" style="margin-top: 0.8rem; margin-bottom: 1.5rem;">
+          <div class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>VIEW (weight = 1)</strong>
+              <span>
+                <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">GET /products/{id}</code>
+                접속 시 자동 기록. URI 패턴 정규식으로 productId를 추출하여 저장합니다.
+              </span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>CART (weight = 3)</strong>
+              <span>
+                <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">POST /cart/add</code>
+                요청 시 Referer 헤더에서 productId를 추출하고, 폼 파라미터에서 modelId를 파싱하여 기록합니다.
+              </span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>PURCHASE (weight = 5)</strong>
+              <span>
+                결제 완료 시 프론트엔드에서
+                <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">POST /recommend/log</code>로
+                Ajax 전송. 인터셉터가 request body JSON을 직접 파싱하여 저장 후 <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">return false</code>로 완료합니다.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 데이터셋 구성 -->
+        <p class="content-text" style="margin-top: 0.5rem; font-weight: 700; color: var(--text);">
+          ② 학습 데이터셋 구성 — 가중치 기반 상호작용 행렬
+        </p>
+        <p class="content-text">
+          DB에 누적된 <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">RecommendLog</code>
+          테이블(user_id, model_id, action_type, weight, timestamp)을 CSV로 추출합니다.
+          pandas DataFrame으로 user/item ID를 정수 인덱스로 매핑한 뒤,
+          <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">scipy.sparse.coo_matrix</code>로
+          희소 상호작용 행렬을 구성합니다.
+          동일 사용자-상품 쌍에 여러 행동이 있을 경우 weight 값이 누산되어 관심도가 강화됩니다.
+        </p>
+
+        <!-- LightFM 모델 -->
+        <p class="content-text" style="margin-top: 1.5rem; font-weight: 700; color: var(--text);">
+          ③ LightFM 모델 — WARP 손실 함수
+        </p>
+        <p class="content-text">
+          <strong>LightFM</strong>은 사용자와 아이템의 잠재 벡터(latent vector)를 내적해 선호도를 예측하는
+          행렬 분해 기반 모델입니다. 손실 함수로 <strong>WARP(Weighted Approximate-Rank Pairwise)</strong>를
+          선택했습니다. WARP는 긍정 상호작용 아이템이 부정 아이템보다 높은 순위에 오도록 최적화하는
+          순위 학습(ranking learning) 방식으로, 클릭·구매 같은 양성 피드백만 존재하는
+          암묵적(implicit) 피드백 데이터에 특히 적합합니다.
+        </p>
+        <div class="trouble-card" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+          <p class="trouble-q">모델 하이퍼파라미터</p>
+          <p class="trouble-a">
+            · <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">no_components = 32</code> — 잠재 요인 차원 수 (사용자·아이템 임베딩 크기)<br>
+            · <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">loss = 'warp'</code> — 순위 기반 쌍 손실 함수<br>
+            · <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">epochs = 10</code>,
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">num_threads = 2</code> — fit_partial()로 에폭마다 지표 측정
+          </p>
+        </div>
+
+        <!-- 성능 지표 -->
+        <p class="content-text" style="margin-top: 0.5rem; font-weight: 700; color: var(--text);">
+          ④ 모델 성능 지표 (더미 데이터 기반 실험)
+        </p>
+        <div class="feature-list" style="margin-top: 0.6rem; margin-bottom: 1.5rem;">
+          <div class="feature-item">
+            <div class="feature-num" style="font-size: 0.62rem; letter-spacing: -0.02em;">P@6</div>
+            <div class="feature-text">
+              <strong>Precision@6 = 0.7037</strong>
+              <span>
+                상위 6개 추천 상품 중 약 70%가 실제 사용자 관심 상품.
+                k=6으로 추천 결과를 6개로 제한했을 때의 정밀도를 측정합니다.
+              </span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num" style="font-size: 0.62rem;">AUC</div>
+            <div class="feature-text">
+              <strong>AUC = 0.9892</strong>
+              <span>
+                랜덤 추천(AUC=0.5) 대비 월등히 높은 순위 구분 능력.
+                모델이 긍정 아이템을 부정 아이템보다 높은 순위에 올릴 확률을 나타냅니다.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FastAPI 서버 -->
+        <p class="content-text" style="margin-top: 0.5rem; font-weight: 700; color: var(--text);">
+          ⑤ FastAPI 추론 서버 (Google Colab + ngrok)
+        </p>
+        <p class="content-text">
+          학습된 모델을 <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">pickle</code>로
+          직렬화하고 FastAPI 서버로 감싸
+          <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">POST /recommend</code>
+          엔드포인트를 제공합니다. Google Colab에서 uvicorn으로 실행하고 ngrok으로 공개 URL을 발급받아
+          Spring Boot가 HTTP 방식으로 호출합니다. 추천 서버와 메인 서버가 완전히 분리되어
+          서버 장애가 서로 전파되지 않습니다.
+        </p>
+        <div class="trouble-card" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+          <p class="trouble-q">API 명세</p>
+          <p class="trouble-a">
+            <strong>POST</strong>
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">/recommend</code><br><br>
+            Request &nbsp;→&nbsp;
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">{ "user_id": 1, "k": 6 }</code><br>
+            Response →
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">{ "recommended": [12, 34, 7, 25, 3, 18] }</code><br><br>
+            미등록 사용자 →
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">{ "recommended": [] }</code>
+            (cold start fallback은 Spring Boot에서 처리)
+          </p>
+        </div>
+
+        <!-- Cold Start -->
+        <p class="content-text" style="margin-top: 0.5rem; font-weight: 700; color: var(--text);">
+          ⑥ Cold Start Fallback
+        </p>
+        <p class="content-text">
+          학습 데이터에 없는 신규 사용자의 user_id가 FastAPI로 전달되면
+          <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.85em; border: 1px solid var(--border);">if user_id_raw not in user_map</code>
+          조건으로 빈 배열을 반환합니다.
+          Spring Boot가 빈 결과를 감지하면 전체 구매·조회 수 기준 <strong>인기 상품 top-k</strong>를
+          대신 표시하는 fallback 로직을 적용했습니다.
+          신규 사용자도 빈 화면 없이 의미 있는 추천을 받을 수 있습니다.
+        </p>
+      </div>
+
+      <!-- 05 · 담당 기능 -->
+      <div class="content-section">
+        <p class="content-label">05 · KEY FEATURES</p>
+        <h2 class="content-title">담당 구현 기능</h2>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>회원 가입 / 수정 / 탈퇴</strong>
+              <span>BCryptPasswordEncoder 비밀번호 암호화, updateUser()로 부분 업데이트(비밀번호 미입력 시 기존 유지),
+              탈퇴 시 연관 QnA·리뷰·주문 항목·주문·장바구니를 @Transactional 내에서 FK 순서대로 삭제하여 무결성 보장.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>쿠폰 생성 · 발급 · 만료 관리 전체</strong>
+              <span>정액(AMOUNT) / 정률(PERCENT) 두 가지 타입, usageLimit(잔여 수량), startDate~endDate(유효 기간),
+              isActive(활성 상태) 토글을 포함한 쿠폰 생명 주기 전체를 CouponService에서 구현.
+              1인 1쿠폰 중복 수령 방지, 수량 소진 시 자동 차감.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>사용자 행동 로그 DB 저장</strong>
+              <span>HandlerInterceptor 기반 RecommendInterceptor가 컨트롤러 코드를 건드리지 않고
+              VIEW·CART·PURCHASE 로그를 RecommendLog 테이블에 자동 저장. ThreadLocal로 요청별 StopWatch를 관리.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">4</div>
+            <div class="feature-text">
+              <strong>행동 로그 기반 학습 데이터셋 구성</strong>
+              <span>DB 로그를 CSV 추출 → pandas 가공 → user/item ID 정수 인덱스 매핑 → scipy COO 희소 행렬 변환.
+              VIEW=1 / CART=3 / PURCHASE=5의 가중치로 상호작용 강도를 차등화해 모델 품질 향상.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">5</div>
+            <div class="feature-text">
+              <strong>LightFM WARP 모델 학습 및 평가</strong>
+              <span>32차원 잠재 벡터, WARP 손실 함수, 10 epoch 학습.
+              에폭마다 Precision@6과 AUC를 측정해 수렴 과정을 확인.
+              최종 Precision@6 0.7037 / AUC 0.9892 달성 (더미 데이터 기준). pickle로 모델 직렬화.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">6</div>
+            <div class="feature-text">
+              <strong>FastAPI 추천 서버 분리 및 API 연동</strong>
+              <span>Google Colab에서 FastAPI + uvicorn 실행, ngrok으로 외부 URL 발급.
+              Spring Boot가 HTTP POST로 추천을 요청하는 완전 분리 구조.
+              추천 서버 장애가 메인 쇼핑몰 동작에 영향을 주지 않음.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">7</div>
+            <div class="feature-text">
+              <strong>Cold Start Fallback 로직</strong>
+              <span>FastAPI에서 미등록 사용자에게 빈 배열 반환 → Spring Boot가 감지 →
+              전체 인기 상품 top-k로 자동 대체. 신규 사용자도 의미 있는 추천 결과를 받을 수 있음.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">8</div>
+            <div class="feature-text">
+              <strong>관리자 대시보드</strong>
+              <span>최근 7일 일별 주문 수 추이(꺾은선), 카테고리별 판매량(막대)을 Chart.js로 시각화.
+              주문 상태 변경 및 페이징 주문 목록 제공.
+              전체 기간 / 이번 달 데이터 전환은 Ajax로 차트를 동적 교체.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">9</div>
+            <div class="feature-text">
+              <strong>팀장 — 역할 분배 및 Git 관리</strong>
+              <span>5인 팀원 역할(상품/주문/결제/커뮤니티/추천) 분배, feature 브랜치 전략,
+              PR 코드 리뷰 프로세스 운영, 머지 충돌 조율 및 일정 관리를 담당.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · 트러블슈팅 -->
+      <div class="content-section">
+        <p class="content-label">06 · TROUBLE SHOOTING</p>
+        <h2 class="content-title">문제 해결 과정</h2>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: Interceptor에서 request body를 읽은 후 Controller에서 재사용 불가</p>
+          <p class="trouble-a">
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">POST /recommend/log</code>
+            요청에서 Interceptor가
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">request.getReader()</code>로
+            JSON body를 읽으면 InputStream이 소진되어, 이후 Controller가 동일 body를 다시 읽을 수 없는 문제가 발생했습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: Interceptor에서 직접 응답 처리 후 return false</p>
+          <p class="trouble-a">
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">/recommend/log</code>
+            경로는 body 파싱과 로그 저장 후
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">response.getWriter().write("logged")</code>로
+            직접 응답하고 <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">return false</code>로
+            Controller 진행을 중단했습니다.
+            Controller는 빈 메서드로 선언만 해두어 Spring Security URL 매핑만 유지했습니다.
+          </p>
+        </div>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: 회원 탈퇴 시 FK 제약 위반으로 삭제 실패</p>
+          <p class="trouble-a">
+            Users 엔티티 삭제 시 Order, CartItem, QnaPost, ReviewPost 등 외래 키를 가진 테이블이
+            먼저 남아 있어
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">DataIntegrityViolationException</code>이
+            발생했습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: 연관 엔티티 역순 수동 삭제 + @OnDelete CASCADE 병행</p>
+          <p class="trouble-a">
+            UserService.delete()에서 QnA → 리뷰 → 주문 항목 → 주문 → 장바구니 항목 → 장바구니 → 유저
+            순서로 명시적으로 삭제했습니다. UserCoupon처럼 빈번히 삭제되는 연관 엔티티에는
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">@OnDelete(action = OnDeleteAction.CASCADE)</code>를
+            병행 적용해 DB 레벨에서도 안전하게 처리했습니다.
+          </p>
+        </div>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: 신규 사용자가 FastAPI에 추천 요청 시 KeyError 발생</p>
+          <p class="trouble-a">
+            모델 학습 데이터에 없는 user_id가 FastAPI로 전달될 경우
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">user_map[user_id]</code>
+            조회에서 KeyError가 발생하며 서버 오류(500)로 이어졌습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: FastAPI 빈 배열 반환 → Spring Boot 인기 상품 fallback</p>
+          <p class="trouble-a">
+            FastAPI에서
+            <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">if user_id_raw not in user_map</code>
+            조건으로 빈 배열을 반환하도록 수정했습니다.
+            Spring Boot가 빈 추천 결과를 감지하면 전체 인기 상품 목록으로 자동 대체하는
+            fallback 로직을 추가하여 cold start 문제를 해결했습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 07 · 회고 -->
+      <div class="content-section">
+        <p class="content-label">07 · RETROSPECTIVE</p>
+        <h2 class="content-title">프로젝트 회고</h2>
+        <div class="retro-grid">
+          <div class="retro-card">
+            <div class="retro-icon">✅</div>
+            <div class="retro-label">잘 된 점</div>
+            <p class="retro-text">
+              추천 시스템을 외부 SaaS 없이 처음부터 직접 구현한 것이 가장 큰 성취였습니다.
+              Interceptor 패턴으로 로그를 비침투적으로 수집하고,
+              LightFM 학습부터 FastAPI 서버 분리·배포까지 전체 파이프라인을 완성했습니다.
+              팀장으로서 6주 일정 안에 충돌 없이 머지를 완료한 점도 의미 있었습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🔧</div>
+            <div class="retro-label">아쉬운 점</div>
+            <p class="retro-text">
+              실제 사용자 데이터 대신 더미 데이터로 모델을 학습해 실전 성능 검증이 어렵습니다.
+              ngrok 무료 플랜의 세션 재시작 시 URL이 바뀌어 운영 안정성이 부족하고,
+              추천 결과가 실시간 반영되지 않아 주기적 재학습 자동화가 필요합니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">💡</div>
+            <div class="retro-label">배운 점</div>
+            <p class="retro-text">
+              협업 필터링의 학습 원리(행렬 분해, WARP 손실)와
+              암묵적 피드백 데이터 처리 방법을 깊이 이해했습니다.
+              Spring HandlerInterceptor로 AOP 방식의 로그 수집을 구현하면서
+              크로스커팅 관심사 분리의 실질적인 가치를 체감했습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🚀</div>
+            <div class="retro-label">다음 목표</div>
+            <p class="retro-text">
+              실제 사용자 데이터로 모델을 재학습하고,
+              배포 환경을 AWS EC2로 전환해 ngrok 의존성을 제거하고 싶습니다.
+              Airflow나 GitHub Actions로 주기적 재학습 파이프라인을 구축하고
+              A/B 테스트로 추천 품질을 개선해 보고 싶습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 사이드바 -->
+    <aside class="detail-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">PROJECT INFO</p>
+        <div class="info-row">
+          <span class="info-key">기간</span>
+          <span class="info-val">2025.06 – 2025.08<br>(약 6주)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">유형</span>
+          <span class="info-val">팀 프로젝트 (5인)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">역할</span>
+          <span class="info-val">팀장<br>회원·쿠폰 관리<br>추천 시스템 전체<br>관리자 대시보드</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">상태</span>
+          <span class="info-val">로컬 배포 완료</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">TECH STACK</p>
+        <div class="stack-list">
+          <div class="stack-item"><span class="stack-dot"></span>Java 17</div>
+          <div class="stack-item"><span class="stack-dot"></span>Spring Boot 3.3</div>
+          <div class="stack-item"><span class="stack-dot"></span>Spring Security 6.x</div>
+          <div class="stack-item"><span class="stack-dot"></span>Spring Data JPA / Hibernate</div>
+          <div class="stack-item"><span class="stack-dot"></span>MySQL 8.0</div>
+          <div class="stack-item"><span class="stack-dot"></span>Thymeleaf</div>
+          <div class="stack-item"><span class="stack-dot"></span>Python · LightFM</div>
+          <div class="stack-item"><span class="stack-dot"></span>FastAPI · uvicorn</div>
+          <div class="stack-item"><span class="stack-dot"></span>Google Colab · ngrok</div>
+          <div class="stack-item"><span class="stack-dot"></span>Gradle</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">LINKS</p>
+        <div class="sidebar-links">
+          <a href="https://github.com/go-nu/WooriZIP" class="sidebar-link" target="_blank">↗ GitHub 저장소</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- 다음 프로젝트 -->
+  <div class="next-section">
+    <div class="next-inner">
+      <div>
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project5.html" class="next-title">프로젝트 05 →</a>
+      </div>
+      <a href="project5.html" class="next-arrow">→</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 고건우. ALL RIGHTS RESERVED.</p>
+    <p>BUILT WITH HTML / CSS / JS</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

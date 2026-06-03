@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT 소리 감지 알림 시스템 | 고건우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">고건우</a>
+    <a href="../index.html#projects" class="nav-back">목록으로</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="hero-meta fadeup">
+      <span class="hero-num">PROJECT 02</span>
+      <span class="hero-divider"></span>
+      <span class="hero-category">IoT · 임베디드 · Android</span>
+    </div>
+    <h1 class="detail-title fadeup delay-1">
+      청각 장애인을 위한<br><span>IoT 소리 감지</span> 알림 시스템
+    </h1>
+    <p class="detail-summary fadeup delay-2">
+      라즈베리파이와 딥러닝(CNN)으로 주변 소리를 실시간 분류·방향 감지하고,
+      Firebase Cloud Messaging을 통해 안드로이드 앱과 스마트 워치에 즉시 알림을 전달하는 IoT 캡스톤 프로젝트입니다.
+    </p>
+    <div class="detail-tags fadeup delay-2">
+      <span class="detail-tag">Raspberry Pi</span>
+      <span class="detail-tag">TensorFlow / Keras</span>
+      <span class="detail-tag">Firebase</span>
+      <span class="detail-tag">FCM</span>
+      <span class="detail-tag">Android (Java)</span>
+      <span class="detail-tag">Wearable</span>
+    </div>
+    <div class="detail-links fadeup delay-3">
+      <a href="https://github.com/go-nu/IoT_Capstone_Design_Project" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
+    </div>
+  </section>
+
+  <!-- 대표 썸네일
+  <div class="thumb-wrap">
+    <video src="../assets/videos/project2/미디어1.mov" controls style="width:100%; height:100%; object-fit:contain; border-radius:4px;"></video>
+  </div> -->
+
+  <!-- BODY -->
+  <div class="detail-body">
+
+    <!-- 메인 콘텐츠 -->
+    <main class="detail-main">
+
+      <!-- 01 · 프로젝트 개요 -->
+      <div class="content-section">
+        <p class="content-label">01 · OVERVIEW</p>
+        <h2 class="content-title">프로젝트 개요</h2>
+        <p class="content-text">
+          청각 장애인은 사이렌·경적·화재 경보 등 위험 소리를 인지하지 못해 일상 속 안전 위협에 그대로 노출됩니다.
+          본 프로젝트는 이 문제를 해결하기 위해 <strong>엣지 디바이스(라즈베리파이)</strong>에서 소리를 수집·분류하고,
+          클라우드를 거쳐 <strong>스마트폰과 웨어러블</strong>에 즉각 알림을 전달하는 종단 간(end-to-end) IoT 시스템을 구현했습니다.
+        </p>
+        <p class="content-text">
+          4인 팀 프로젝트로 진행했으며, 저는 <strong>라즈베리파이 추론 실행 · Firebase Cloud Messaging 전송 ·
+          Android 알림 수신 · 스마트 워치 알림 연동</strong> 을 담당했습니다.
+          CNN 모델이 분류한 결과를 실시간으로 사용자 기기까지 안정적으로 전달하는 전체 파이프라인을 설계하고 구현했습니다.
+        </p>
+      </div>
+
+      <!-- 02 · 데모 영상 -->
+      <div class="content-section">
+        <p class="content-label">02 · DEMO</p>
+        <h2 class="content-title">동작 데모 영상</h2>
+        <div class="video-wrap">
+          <div class="gallery-img" style="aspect-ratio: 16/9; background:#000;">
+            <video src="../assets/videos/project2/미디어1.mov" controls style="width:100%; height:100%; object-fit:contain;"></video>
+          </div>
+          <div class="gallery-caption">
+            <strong>실험 동작 영상</strong>
+            라즈베리파이가 소리를 분류하고, 방향 및 소리 종류 결과가 안드로이드 앱과 스마트 워치에 실시간으로 표시되는 전체 흐름을 확인할 수 있습니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · 아키텍처 / 데이터 흐름 -->
+      <div class="content-section">
+        <p class="content-label">03 · ARCHITECTURE</p>
+        <h2 class="content-title">시스템 구조 및 데이터 흐름</h2>
+        <p class="content-text" style="margin-bottom: 1.5rem;">
+          마이크로부터 웨어러블까지 이어지는 전체 파이프라인입니다.
+          엣지에서의 AI 추론 결과가 Firebase를 통해 실시간으로 앱까지 전달됩니다.
+        </p>
+
+        <div class="flow-wrap">
+          <!-- Row 1: Edge -->
+          <div class="flow-row">
+            <div class="flow-node client">마이크<br>(다중)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">FFT 음량 감지</div>
+            </div>
+            <div class="flow-node server">Raspberry Pi<br>(추론)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">firebase-admin SDK</div>
+            </div>
+            <div class="flow-node db">Firebase<br>Realtime DB</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <!-- Row 2: Cloud → App -->
+          <div class="flow-row">
+            <div class="flow-node db">Firebase<br>Realtime DB</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">onWrite 트리거</div>
+            </div>
+            <div class="flow-node server">Firebase<br>Functions</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">FCM Push</div>
+            </div>
+            <div class="flow-node ext">Android 앱<br>+ Wearable</div>
+          </div>
+
+          <div class="flow-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background: var(--surface); border: 1.5px solid var(--border);"></div>
+              하드웨어
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #e8f4ee; border: 1.5px solid var(--accent2);"></div>
+              서버 / 클라우드
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #f0f7f4; border: 1.5px solid var(--accent);"></div>
+              데이터베이스
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #fdf8f0; border: 1.5px dashed var(--border);"></div>
+              클라이언트 기기
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · 주요 기능 -->
+      <div class="content-section">
+        <p class="content-label">04 · FEATURES</p>
+        <h2 class="content-title">주요 기능 (담당 파트)</h2>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>라즈베리파이 엣지 추론</strong>
+              <span>PyAudio로 수집한 오디오를 librosa로 MFCC 특징 추출 후 학습된 CNN 모델(model.h5)에 입력해 7가지 소리를 실시간 분류합니다. FFT 기반 음량 임계값(20,000)을 초과할 때만 5초 녹음을 시작해 불필요한 추론을 최소화했습니다.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>Firebase Cloud Messaging 알림 전송</strong>
+              <span>firebase-admin SDK로 분류 결과를 Realtime Database에 업로드하면, Firebase Functions의 onWrite 트리거가 감지해 스마트폰과 웨어러블 토큰으로 FCM 푸시 알림을 자동 전송합니다. 값이 실제로 변경된 경우에만 알림을 보내도록 이전 값과 비교 로직을 추가했습니다.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>Android 앱 알림 수신 및 UI 업데이트</strong>
+              <span>Firebase Realtime Database를 실시간 구독해 소리 종류에 따라 아이콘과 텍스트 색상을 즉시 변경합니다. 위험 소리(사이렌·경적·화재)는 빨간색, 일반 소리(주행음·자전거)는 파란색으로 구분해 시각적으로 직관적인 UI를 제공합니다. MyFirebaseMessagingService를 통해 백그라운드에서도 FCM 알림을 수신합니다.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">4</div>
+            <div class="feature-text">
+              <strong>스마트 워치 진동 알림 연동</strong>
+              <span>FirebaseDatabaseService 백그라운드 서비스가 소리 방향 변경을 감지해 방향별로 서로 다른 진동 패턴을 출력합니다. 동(짧은 1회) · 서(긴 1회) · 남(짧은 2회) · 북(긴 2회)으로 소리 방향을 촉각으로 즉시 구분할 수 있습니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · 트러블슈팅 -->
+      <div class="content-section">
+        <p class="content-label">05 · TROUBLE SHOOTING</p>
+        <h2 class="content-title">문제 해결 과정</h2>
+        <div class="trouble-card">
+          <p class="trouble-q">문제: 소리가 없을 때도 지속적으로 추론이 실행되어 CPU 과부하 발생</p>
+          <p class="trouble-a">
+            라즈베리파이의 제한된 연산 자원에서 상시 추론을 실행하면 CPU 사용률이 100%에 달해 시스템이 불안정해졌습니다.
+            FFT로 현재 음량을 계산하고 임계값(20,000)을 초과할 때만 녹음과 추론을 시작하는 음량 트리거 방식으로 전환했습니다.
+            이를 통해 불필요한 연산을 크게 줄이고 안정적인 실시간 동작이 가능해졌습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">문제: Firebase DB 값이 같아도 onWrite 트리거가 발동되어 중복 알림 전송</p>
+          <p class="trouble-a">
+            Firebase Functions의 onWrite는 값 변경 여부와 무관하게 쓰기 이벤트가 발생하면 항상 트리거됩니다.
+            change.before와 change.after를 비교해 sound_type 또는 sound_direction 중 하나라도 실제로 달라진 경우에만 FCM 메시지를 전송하도록 조건 분기를 추가해 중복 알림 문제를 해결했습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">문제: 앱이 백그라운드 상태일 때 소리 방향 변경에 따른 진동이 동작하지 않음</p>
+          <p class="trouble-a">
+            Activity가 백그라운드로 전환되면 Firebase Realtime Database 리스너가 해제되어 방향 변경을 감지하지 못했습니다.
+            방향 감지와 진동 출력 로직을 별도의 START_STICKY 백그라운드 서비스(FirebaseDatabaseService)로 분리해,
+            앱이 포그라운드가 아닌 상태에서도 지속적으로 동작하도록 수정했습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 06 · 회고 -->
+      <div class="content-section">
+        <p class="content-label">06 · RETROSPECTIVE</p>
+        <h2 class="content-title">프로젝트 회고</h2>
+        <div class="retro-grid">
+          <div class="retro-card">
+            <div class="retro-icon">✅</div>
+            <div class="retro-label">잘 된 점</div>
+            <p class="retro-text">
+              마이크 → 추론 → DB → FCM → 앱·워치로 이어지는 전체 파이프라인을 직접 설계하고 연결했습니다.
+              각 컴포넌트를 독립적으로 구현해 디버깅이 용이했고, 팀원과의 인터페이스(DB 경로 스키마)를 명확히 정의해 통합 시 충돌이 없었습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🔧</div>
+            <div class="retro-label">아쉬운 점</div>
+            <p class="retro-text">
+              라즈베리파이의 자원 제약으로 추론 지연이 발생했습니다.
+              TensorFlow Lite로 모델을 경량화하거나, 방향 감지 알고리즘을 개선했다면 응답 속도를 더 높일 수 있었을 것입니다.
+              또한 Firebase 서비스 계정 키를 환경 변수로 완전히 분리하지 못한 점이 아쉽습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">💡</div>
+            <div class="retro-label">배운 점</div>
+            <p class="retro-text">
+              엣지 컴퓨팅 환경의 자원 제약을 직접 경험하며 경량화와 트리거 기반 설계의 중요성을 체감했습니다.
+              Firebase Functions의 이벤트 기반 아키텍처와 FCM 토큰 관리, Android 백그라운드 서비스 생명주기에 대한 이해를 실전에서 쌓을 수 있었습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🚀</div>
+            <div class="retro-label">다음 목표</div>
+            <p class="retro-text">
+              TensorFlow Lite 및 Edge TPU를 활용한 모델 경량화를 시도해보고 싶습니다.
+              또한 다중 마이크 배열 신호 처리를 개선해 방향 정확도를 4방향에서 8방향 이상으로 확장하는 것이 다음 도전입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 사이드바 -->
+    <aside class="detail-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">PROJECT INFO</p>
+        <div class="info-row">
+          <span class="info-key">기간</span>
+          <span class="info-val">2023.03 – 2023.06</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">유형</span>
+          <span class="info-val">팀 (4인)<br>캡스톤 디자인</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">역할</span>
+          <span class="info-val">엣지 추론 파이프라인<br>FCM 알림 전송<br>Android 앱 개발<br>스마트 워치 연동</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">상태</span>
+          <span class="info-val">개발 완료 (과제 제출)</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">TECH STACK</p>
+        <div class="stack-list">
+          <div class="stack-item"><span class="stack-dot"></span>Raspberry Pi</div>
+          <div class="stack-item"><span class="stack-dot"></span>Python (TensorFlow, librosa, PyAudio)</div>
+          <div class="stack-item"><span class="stack-dot"></span>Firebase Realtime Database</div>
+          <div class="stack-item"><span class="stack-dot"></span>Firebase Functions (Node.js)</div>
+          <div class="stack-item"><span class="stack-dot"></span>Firebase Cloud Messaging</div>
+          <div class="stack-item"><span class="stack-dot"></span>Android (Java)</div>
+          <div class="stack-item"><span class="stack-dot"></span>Wearable (스마트 워치)</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">LINKS</p>
+        <div class="sidebar-links">
+          <a href="https://github.com/go-nu/IoT_Capstone_Design_Project" class="sidebar-link" target="_blank">↗ GitHub 저장소</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- 다음 프로젝트 -->
+  <div class="next-section">
+    <div class="next-inner">
+      <div>
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project3.html" class="next-title">다음 프로젝트 →</a>
+      </div>
+      <a href="project3.html" class="next-arrow">→</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 고건우. ALL RIGHTS RESERVED.</p>
+    <p>BUILT WITH HTML / CSS / JS</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

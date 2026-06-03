@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMU 기반 키스트로크 사용자 인증 | 고건우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">고건우</a>
+    <a href="../index.html#projects" class="nav-back">목록으로</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="hero-meta fadeup">
+      <span class="hero-num">PROJECT 05</span>
+      <span class="hero-divider"></span>
+      <span class="hero-category">딥러닝 / 임베디드 / 보안</span>
+    </div>
+    <h1 class="detail-title fadeup delay-1">
+      IMU 센서 기반<br><span>키스트로크 다이나믹스</span><br>사용자 인증 시스템
+    </h1>
+    <p class="detail-summary fadeup delay-2">
+      스마트폰 IMU 센서(가속도계·자이로스코프)로 키보드 타이핑 패턴을 수집하고,
+      계층형 BiGRU 모델로 사용자를 자동 인증하는 행동 생체인식 연구 프로젝트입니다.
+    </p>
+    <div class="detail-tags fadeup delay-2">
+      <span class="detail-tag">Android / Java</span>
+      <span class="detail-tag">Python / PyTorch</span>
+      <span class="detail-tag">BiGRU</span>
+      <span class="detail-tag">IMU 센서</span>
+      <span class="detail-tag">MATLAB</span>
+      <span class="detail-tag">IEEE Sensors Journal</span>
+    </div>
+    <div class="detail-links fadeup delay-3">
+      <a href="https://github.com/username/App_keyStroke" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
+    </div>
+  </section>
+
+  <!-- 대표 썸네일 -->
+  <div class="thumb-wrap">
+    <!-- <img src="../assets/images/project5/thumb.png" alt="키스트로크 인증 시스템 대표 이미지"> -->
+    <p class="thumb-placeholder">ANDROID APP · IMU DATA · BiGRU MODEL PIPELINE</p>
+  </div>
+
+  <!-- BODY -->
+  <div class="detail-body">
+
+    <!-- 메인 콘텐츠 -->
+    <main class="detail-main">
+
+      <!-- 01 · 프로젝트 개요 -->
+      <div class="content-section">
+        <p class="content-label">01 · OVERVIEW</p>
+        <h2 class="content-title">프로젝트 개요</h2>
+        <p class="content-text">
+          기존 비밀번호 기반 인증은 탈취·공유에 취약합니다. 본 연구는 스마트폰 IMU 센서
+          (가속도계·자이로스코프)를 활용해 키보드를 타이핑하는 동안 발생하는 미세한 진동
+          패턴—키스트로크 다이나믹스—을 학습하여 사용자를 자동으로 식별하는
+          행동 생체인식(Behavioral Biometrics) 시스템을 구현합니다.
+        </p>
+        <p class="content-text">
+          직접 개발한 Android 데이터 수집 앱으로 좌손·우손·양손 3개 세션의 IMU 데이터를
+          구축한 뒤, 두 BiGRU 모델을 직렬 연결하는 멀티모달 캐스케이드 파이프라인으로
+          (1) 타이핑 손 방향 3-class 분류 → (2) 본인 여부 이진 인증을 수행합니다.
+          본 연구는 IEEE Sensors Journal에 투고 중입니다.
+        </p>
+      </div>
+
+      <!-- 02 · 화면 스크린샷 -->
+      <div class="content-section">
+        <p class="content-label">02 · SCREENS</p>
+        <h2 class="content-title">주요 화면 및 결과</h2>
+        <div class="gallery-grid">
+
+          <!-- 대표 화면 - 전체 너비 -->
+          <div class="gallery-item full">
+            <div class="gallery-img">
+              <!-- <img src="../assets/images/project5/app_main.png" alt="앱 메인 화면"> -->
+              Android 앱 메인 화면 스크린샷
+            </div>
+            <div class="gallery-caption">
+              <strong>데이터 수집 앱 — 메인 화면</strong>
+              사용자 이름, 사용 손(좌/우), 테스트 손을 입력한 뒤 Start 버튼을 누르면
+              IMU 센서 기록이 시작됩니다.
+            </div>
+          </div>
+
+          <!-- 2단 그리드 화면들 -->
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <!-- <img src="../assets/images/project5/app_sub.png" alt="타이핑 세션 화면"> -->
+              타이핑 세션 화면 (SubActivity)
+            </div>
+            <div class="gallery-caption">
+              <strong>타이핑 세션 화면</strong>
+              우손·좌손·양손 3개 입력 필드에서 3개 chapter를 순차 진행하며
+              키 입력과 IMU 데이터를 동기 수집합니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <!-- <img src="../assets/images/project5/imu_vis.png" alt="IMU 데이터 시각화"> -->
+              MATLAB IMU 데이터 시각화
+            </div>
+            <div class="gallery-caption">
+              <strong>IMU 데이터 시각화</strong>
+              MATLAB 스크립트로 수집된 가속도계·자이로스코프 신호와
+              관성 좌표계 3D 자세를 시각화하여 데이터 품질을 검증합니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <!-- <img src="../assets/images/project5/model1_result.png" alt="Model 1 학습 결과"> -->
+              Model 1 학습 결과
+            </div>
+            <div class="gallery-caption">
+              <strong>Model 1 — 손 방향 분류 결과</strong>
+              BiGRU가 좌손·우손·양손 타이핑을 3-class 분류한
+              학습 손실 및 정확도 추이입니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <!-- <img src="../assets/images/project5/model2_result.png" alt="Model 2 학습 결과"> -->
+              Model 2 학습 결과
+            </div>
+            <div class="gallery-caption">
+              <strong>Model 2 — 사용자 인증 결과</strong>
+              Model 1 출력을 피처로 추가한 BiGRU가 본인/타인을
+              이진 분류한 학습 결과입니다.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 03 · 아키텍처 / 데이터 흐름 -->
+      <div class="content-section">
+        <p class="content-label">03 · ARCHITECTURE</p>
+        <h2 class="content-title">시스템 구조 및 데이터 흐름</h2>
+        <p class="content-text" style="margin-bottom: 1.5rem;">
+          Android 앱에서 수집한 IMU 로그가 전처리·피처 추출을 거쳐 두 BiGRU 모델을
+          순차적으로 통과하는 계층형 멀티모달 파이프라인입니다.
+          Model 1의 손 방향 분류 결과가 Model 2의 입력 피처에 직접 결합됩니다.
+        </p>
+
+        <div class="flow-wrap">
+          <!-- 1단계: 데이터 수집 및 Model 1 -->
+          <div class="flow-row">
+            <div class="flow-node client">스마트폰<br>(Android 앱)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">키 + IMU 동기 기록</div>
+            </div>
+            <div class="flow-node db">keyStroke.txt<br>(원시 데이터)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">세션 분리 · 보간</div>
+            </div>
+            <div class="flow-node server">전처리<br>(L/R/Both)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">7-dim 시계열</div>
+            </div>
+            <div class="flow-node server">Model 1<br>(BiGRU · 3-class)</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <!-- 2단계: 피처 추출 및 Model 2 -->
+          <div class="flow-row">
+            <div class="flow-node server">Model 1<br>출력 (L/R/B)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">피처 concat</div>
+            </div>
+            <div class="flow-node server">피처 추출<br>(백분위 통계)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">15-dim 입력</div>
+            </div>
+            <div class="flow-node server">Model 2<br>(BiGRU · Binary)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">Sigmoid</div>
+            </div>
+            <div class="flow-node ext">인증 결과<br>(본인 / 타인)</div>
+          </div>
+
+          <div class="flow-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background: var(--surface); border: 1.5px solid var(--border);"></div>
+              스마트폰 / 앱
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #e8f4ee; border: 1.5px solid var(--accent2);"></div>
+              처리 / 모델
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #f0f7f4; border: 1.5px solid var(--accent);"></div>
+              데이터 파일
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #fdf8f0; border: 1.5px dashed var(--border);"></div>
+              출력 / 결과
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · 주요 기능 -->
+      <div class="content-section">
+        <p class="content-label">04 · FEATURES</p>
+        <h2 class="content-title">주요 구현 내용</h2>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>Android IMU 데이터 수집 앱</strong>
+              <span>가속도계·자이로스코프를 SENSOR_DELAY_GAME 주기로 샘플링하며 키 입력 이벤트(ASCII 코드)와 타임스탬프를 동기 기록합니다. 좌손·우손·양손 3개 입력 필드와 3개 chapter를 자동 전환하여 체계적인 데이터를 수집합니다.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>전처리 — 세션 분리 및 선형 보간 패딩</strong>
+              <span>원시 로그에서 L/R/Both 타이핑 세션을 ASCII 기준으로 자동 분리하고, 가변 길이 시계열을 최대 길이에 맞춰 7개 키 구간별로 균등 보간합니다. 배치 학습에 필요한 동일 크기의 입력 텐서를 생성하면서 타이핑 리듬 정보를 최대한 보존합니다.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>Model 1 — BiGRU 타이핑 손 방향 분류</strong>
+              <span>7차원 IMU 시계열(key ASCII + timestamp + ax, ay, az, gx, gy)을 입력으로 받는 양방향 GRU(hidden=32, layers=4)로 좌손(0)·우손(1)·양손(2) 3-class 분류를 수행합니다. CrossEntropyLoss와 Adam(lr=1e-3)으로 학습합니다.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">4</div>
+            <div class="feature-text">
+              <strong>Model 2 — BiGRU 사용자 이진 인증</strong>
+              <span>키스트로크별 IMU 6축의 95th/5th 백분위수 통계 + 키 유지 시간 + Model 1 출력을 결합한 15차원 피처 벡터를 BiGRU(hidden=8, layers=4)로 학습합니다. Sigmoid + BCELoss로 본인(0) / 타인(1)을 이진 분류하며, Model 1의 손 방향 컨텍스트가 인증 정확도를 향상시킵니다.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">5</div>
+            <div class="feature-text">
+              <strong>MATLAB IMU 시각화 및 데이터 검증</strong>
+              <span>수집된 IMU 데이터를 관성 좌표계로 변환하여 3D 자세 시각화 및 각 센서 신호 플롯을 제공합니다. 가속도계 캘리브레이션 파일(acce_calib.txt)을 자동 적용하여 수집 데이터의 품질을 검증합니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · 트러블슈팅 -->
+      <div class="content-section">
+        <p class="content-label">05 · TROUBLE SHOOTING</p>
+        <h2 class="content-title">문제 해결 과정</h2>
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: 가변 길이 키스트로크 시계열의 배치 학습 불가</p>
+          <p class="trouble-a">
+            사용자마다 타이핑 속도가 달라 동일 키에 대한 IMU 시퀀스 길이가 제각각이었습니다.
+            PyTorch DataLoader는 동일한 배치 크기를 요구하기 때문에 단순 제로 패딩만으로는
+            의미 없는 0값이 학습 신호에 혼입되는 문제가 있었습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: 키 구간별 균등 선형 보간</p>
+          <p class="trouble-a">
+            전체를 단순 패딩하는 대신, 7개 키 구간(chapter에 해당하는 ASCII 그룹)별로
+            목표 길이를 비례 배분한 뒤 numpy.interp로 열(column)마다 독립적으로
+            선형 보간하여 원래 타이핑 리듬을 최대한 보존했습니다.
+            이 방식으로 배치 학습 가능한 고정 크기 텐서를 생성하면서 정보 손실을 최소화했습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: 타이핑 손 방향 정보를 인증 모델에 반영하는 방법</p>
+          <p class="trouble-a">
+            사용자 인증 모델(Model 2)이 타이핑 손 방향을 모르면 손에 따라 달라지는
+            IMU 패턴 차이를 구분하지 못해 인증 정확도가 낮아졌습니다.
+            두 모델을 완전히 분리하면 이 맥락 정보가 유실됩니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: 캐스케이드 멀티모달 파이프라인</p>
+          <p class="trouble-a">
+            Model 1의 추론 결과(L/R/Both 레이블)를 각 키스트로크 데이터 행에 열로 직접 concat한 뒤
+            백분위수 통계 피처를 추출하여 Model 2의 입력 피처(15-dim)에 포함시켰습니다.
+            이렇게 하면 Model 2가 손 방향 컨텍스트를 피처로 함께 학습할 수 있어
+            동일 사용자라도 손에 따른 IMU 패턴 변화를 보정할 수 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 06 · 회고 -->
+      <div class="content-section">
+        <p class="content-label">06 · RETROSPECTIVE</p>
+        <h2 class="content-title">프로젝트 회고</h2>
+        <div class="retro-grid">
+          <div class="retro-card">
+            <div class="retro-icon">✅</div>
+            <div class="retro-label">잘 된 점</div>
+            <p class="retro-text">
+              Android 앱 개발부터 데이터 수집·전처리·모델 학습·논문 작성까지
+              전 파이프라인을 직접 설계하고 구현했습니다. 특히 캐스케이드 구조를 통해
+              두 모델이 상호 보완하도록 설계한 것이 실질적인 인증 성능 향상으로 이어졌습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🔧</div>
+            <div class="retro-label">아쉬운 점</div>
+            <p class="retro-text">
+              데이터셋 규모가 제한적이어서 일반화 성능 검증이 충분하지 않습니다.
+              더 많은 피실험자와 다양한 키보드 환경(맥북, 기계식 키보드 등)에서
+              추가 검증이 필요합니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">💡</div>
+            <div class="retro-label">배운 점</div>
+            <p class="retro-text">
+              IMU 시계열 특성상 길이 정규화 전략이 모델 성능에 결정적 영향을 미친다는 점,
+              그리고 도메인 지식(손 방향)을 피처로 명시적으로 인코딩하면
+              모델이 더 효율적으로 학습한다는 것을 직접 확인했습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🚀</div>
+            <div class="retro-label">다음 목표</div>
+            <p class="retro-text">
+              논문 게재 후 실시간 인증 모듈로 확장하여 온디바이스 추론을 스마트폰 앱에
+              통합하는 것이 목표입니다. Transformer 기반 모델과의 성능 비교도 진행할 계획입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 사이드바 -->
+    <aside class="detail-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">PROJECT INFO</p>
+        <!-- 개발 기간 비공개
+        <div class="info-row">
+          <span class="info-key">기간</span>
+          <span class="info-val">XXXX.XX – XXXX.XX</span>
+        </div>
+        -->
+        <div class="info-row">
+          <span class="info-key">유형</span>
+          <span class="info-val">3인 (연구실)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">역할</span>
+          <span class="info-val">
+            Android 앱 개발<br>
+            학습 데이터 구성<br>
+            데이터 전처리 및<br>피처 추출<br>
+            딥러닝 모델 설계 · 학습<br>
+            MATLAB 시각화<br>
+            실험 결과 정리 및<br>논문 초안 작성
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">상태</span>
+          <span class="info-val">IEEE Sensors Journal<br>투고 중</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">TECH STACK</p>
+        <div class="stack-list">
+          <div class="stack-item"><span class="stack-dot"></span>Android / Java</div>
+          <div class="stack-item"><span class="stack-dot"></span>Python / PyTorch</div>
+          <div class="stack-item"><span class="stack-dot"></span>Bidirectional GRU (BiGRU)</div>
+          <div class="stack-item"><span class="stack-dot"></span>NumPy</div>
+          <div class="stack-item"><span class="stack-dot"></span>MATLAB</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">LINKS</p>
+        <div class="sidebar-links">
+          <a href="https://github.com/username/App_keyStroke" class="sidebar-link" target="_blank">↗ GitHub (Android App)</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- 다음 프로젝트 -->
+  <div class="next-section">
+    <div class="next-inner">
+      <div>
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project6.html" class="next-title">다음 프로젝트 →</a>
+      </div>
+      <a href="project6.html" class="next-arrow">→</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 고건우. ALL RIGHTS RESERVED.</p>
+    <p>BUILT WITH HTML / CSS / JS</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

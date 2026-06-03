@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodiON – AI 추론 모델 | 고건우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">고건우</a>
+    <a href="../index.html#projects" class="nav-back">목록으로</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="hero-meta fadeup">
+      <span class="hero-num">PROJECT 06</span>
+      <span class="hero-divider"></span>
+      <span class="hero-category">AI / ML 서비스</span>
+    </div>
+    <h1 class="detail-title fadeup delay-1">
+      날씨×의류 물성치 기반<br><span>체감 점수 추론</span> 모델
+    </h1>
+    <p class="detail-summary fadeup delay-2">
+      기온·습도·풍속·구름량을 UTCI 환경 지표로 변환하고 의류 물성치와 결합한 9차원 피처를
+      PyTorch MLP에 입력해 체감 점수를 예측, 피드백 기반 time-decay 재정렬까지 구현한
+      AI 의류 추천 서비스 <strong>CodiON</strong>의 추론 파트입니다.
+    </p>
+    <div class="detail-tags fadeup delay-2">
+      <span class="detail-tag">PyTorch</span>
+      <span class="detail-tag">FastAPI</span>
+      <span class="detail-tag">Python 3.11</span>
+      <span class="detail-tag">UTCI</span>
+      <span class="detail-tag">MLP Regression</span>
+      <span class="detail-tag">AdamW</span>
+    </div>
+    <div class="detail-links fadeup delay-3">
+      <a href="https://github.com/Codi-ON/CodiON" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
+    </div>
+  </section>
+
+  <!-- 대표 썸네일 -->
+  <div class="thumb-wrap">
+    <img src="https://github.com/user-attachments/assets/18011b07-4a46-4318-a298-18b61dbdac70" alt="CodiON 랜딩 페이지">
+  </div>
+
+  <!-- BODY -->
+  <div class="detail-body">
+
+    <!-- 메인 콘텐츠 -->
+    <main class="detail-main">
+
+      <!-- 01 · 프로젝트 개요 -->
+      <div class="content-section">
+        <p class="content-label">01 · OVERVIEW</p>
+        <h2 class="content-title">프로젝트 개요</h2>
+        <p class="content-text">
+          <strong>CodiON</strong>은 "오늘 뭐 입지?"라는 매일 반복되는 고민을 줄이기 위해
+          날씨 환경, 보유 의류 데이터, 사용자 피드백을 종합해 코디를 추천하는 AI 서비스입니다.
+          3인 팀 프로젝트로, 저는 <strong>AI 추론 파트 전체</strong>를 단독 담당했습니다.
+          의류 소재(면/폴리 혼방 비율, 두께)의 물성치와 기상 데이터를 결합한
+          입력 feature 구조를 설계하고, PyTorch 기반 MLP 회귀 모델을 직접 학습했으며,
+          추론 결과에 사용자 피드백을 반영하는 FastAPI 서버까지 구현했습니다.
+        </p>
+        <p class="content-text">
+          실제 착용 라벨 데이터가 없는 환경에서 출발했기 때문에,
+          열환경 국제 표준 지표인 <strong>UTCI(Universal Thermal Climate Index)</strong>와
+          직물 물성치(열저항·수증기저항·공기투과도) 기반의 물리 모델로 comfort score 라벨을
+          직접 생성하는 시뮬레이션 데이터셋 파이프라인을 구축했습니다.
+          학습 후에는 time-decay 가중 피드백 재정렬 로직을 추가해 개인화 추천을 구현했습니다.
+        </p>
+      </div>
+
+      <!-- 02 · 화면 스크린샷 -->
+      <div class="content-section">
+        <p class="content-label">02 · SCREENS</p>
+        <h2 class="content-title">주요 화면</h2>
+        <div class="gallery-grid">
+
+          <div class="gallery-item full">
+            <div class="gallery-img">
+              <img src="https://github.com/user-attachments/assets/0174c01e-0116-485b-a63d-a2500d57e071" alt="오늘의 코디 메인 화면">
+            </div>
+            <div class="gallery-caption">
+              <strong>오늘의 코디 메인 화면</strong>
+              현재 날씨를 기반으로 AI가 오늘 착용하기 적합한 옷을 추천하고 날씨 리포트를 제공합니다.
+              추천 결과는 FastAPI 추론 서버에서 계산된 체감 점수(0~100) 순으로 정렬됩니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="https://github.com/user-attachments/assets/c05d4e4d-6d66-49d3-82f0-876a121730c1" alt="코디 추천 결과">
+            </div>
+            <div class="gallery-caption">
+              <strong>코디 추천 결과</strong>
+              보유 의류에 대해 날씨 체감 점수를 계산하고,
+              사용자 피드백 이력이 있으면 time-decay 재정렬을 적용해 개인화 순위를 반환합니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="https://github.com/user-attachments/assets/d22968de-24e5-48a8-86f0-046b86af9bb1" alt="활동 체크리스트">
+            </div>
+            <div class="gallery-caption">
+              <strong>활동 체크리스트</strong>
+              날씨 분석 → 활동 체크 → 스타일 생성 → 최종 제안 4단계 흐름으로
+              추천 정확도를 높입니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="https://github.com/user-attachments/assets/039bf374-40bf-42f9-99a7-32a0396abbf6" alt="옷장 관리">
+            </div>
+            <div class="gallery-caption">
+              <strong>나의 옷장</strong>
+              등록된 의류의 면/폴리 혼방 비율과 두께 정보가 추론 서버의 입력 feature 구성에
+              직접 사용됩니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="https://github.com/user-attachments/assets/3f5e61c8-1906-44f7-9f63-d5acc5988296" alt="추천 히스토리">
+            </div>
+            <div class="gallery-caption">
+              <strong>추천 히스토리 & 캘린더</strong>
+              날짜별 코디 이력과 피드백(좋아요/싫어요) 기록이
+              재정렬 bias 계산의 입력 로그로 누적됩니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="https://github.com/user-attachments/assets/c2fa063a-2ab6-45ed-8a40-7366c50c73e0" alt="관리자 대시보드">
+            </div>
+            <div class="gallery-caption">
+              <strong>관리자 대시보드</strong>
+              일별 세션·클릭 이벤트 및 추천 모델 KPI 지표를 실시간으로 확인합니다.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 03 · 아키텍처 / 데이터 흐름 -->
+      <div class="content-section">
+        <p class="content-label">03 · ARCHITECTURE</p>
+        <h2 class="content-title">AI 모델 설계 구조</h2>
+        <p class="content-text" style="margin-bottom: 1.5rem;">
+          실측 착용 데이터 없이 물리 기반 시뮬레이션으로 학습 데이터를 생성하고,
+          PyTorch MLP로 체감 점수를 회귀 예측한 뒤 FastAPI로 서빙합니다.
+          피드백 재정렬은 별도 서비스 레이어에서 처리해 AI 추론 로직과 분리했습니다.
+        </p>
+
+        <!-- 학습 파이프라인 -->
+        <p style="font-size: 0.85rem; font-weight: 700; color: var(--accent2); margin-bottom: 0.8rem; letter-spacing: 0.05em;">
+          ① 학습 데이터 생성 파이프라인
+        </p>
+        <div class="flow-wrap" style="margin-bottom: 2.5rem;">
+          <div class="flow-row">
+            <div class="flow-node client" style="font-size: 0.72rem; line-height: 1.5;">면비율×두께<br>조합 열거</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">보간·외삽</div>
+            </div>
+            <div class="flow-node server" style="font-size: 0.72rem; line-height: 1.5;">R_ct · R_et · AP<br>물성치 산출</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">두께 보정</div>
+            </div>
+            <div class="flow-node db" style="font-size: 0.72rem; line-height: 1.5;">의류 응답<br>3-dim</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <div class="flow-row">
+            <div class="flow-node client" style="font-size: 0.72rem; line-height: 1.5;">기상 파라미터<br>Ta·RH·Va·cloud</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">UTCI 변환</div>
+            </div>
+            <div class="flow-node server" style="font-size: 0.72rem; line-height: 1.5;">UTCI·temp_range<br>weather one-hot</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">penalty 합산</div>
+            </div>
+            <div class="flow-node db" style="font-size: 0.72rem; line-height: 1.5;">comfort score<br>라벨 (물리 기반)</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <div class="flow-row">
+            <div class="flow-node db" style="font-size: 0.72rem; line-height: 1.5;">9-dim Feature<br>+ Label CSV</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">regime 층화<br>80/10/10</div>
+            </div>
+            <div class="flow-node server" style="font-size: 0.72rem; line-height: 1.5;">ComfortMLP<br>AdamW · MSE</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">Early Stop<br>patience=20</div>
+            </div>
+            <div class="flow-node ext" style="font-size: 0.72rem; line-height: 1.5;">model.pt<br>저장</div>
+          </div>
+
+          <div class="flow-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background: var(--surface); border: 1.5px solid var(--border);"></div>
+              입력 파라미터
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #e8f4ee; border: 1.5px solid var(--accent2);"></div>
+              처리 / 변환
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #f0f7f4; border: 1.5px solid var(--accent);"></div>
+              데이터 / 결과
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #fdf8f0; border: 1.5px dashed var(--border);"></div>
+              아티팩트
+            </div>
+          </div>
+        </div>
+
+        <!-- 서빙 파이프라인 -->
+        <p style="font-size: 0.85rem; font-weight: 700; color: var(--accent2); margin-bottom: 0.8rem; letter-spacing: 0.05em;">
+          ② 서빙 추론 파이프라인
+        </p>
+        <div class="flow-wrap">
+          <div class="flow-row">
+            <div class="flow-node client" style="font-size: 0.72rem; line-height: 1.5;">Spring Boot<br>Backend</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">POST /api<br>/feedback/adaptive</div>
+            </div>
+            <div class="flow-node server" style="font-size: 0.72rem; line-height: 1.5;">FastAPI<br>Pydantic 파싱</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">9-dim feature</div>
+            </div>
+            <div class="flow-node server" style="font-size: 0.72rem; line-height: 1.5;">ComfortMLP<br>model.pt 추론</div>
+          </div>
+
+          <hr class="flow-divider">
+
+          <div class="flow-row">
+            <div class="flow-node server" style="font-size: 0.72rem; line-height: 1.5;">1차 체감 점수<br>(의류별 score)</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">피드백 로그<br>time-decay</div>
+            </div>
+            <div class="flow-node server" style="font-size: 0.72rem; line-height: 1.5;">userBias<br>itemBias 계산</div>
+            <div class="flow-arrow">
+              <div style="display:flex; align-items:center;">
+                <div class="flow-arrow-line"></div>
+                <div class="flow-arrow-head">▶</div>
+              </div>
+              <div class="flow-arrow-label">재정렬<br>α=0.15</div>
+            </div>
+            <div class="flow-node db" style="font-size: 0.72rem; line-height: 1.5;">최종 추천<br>결과 반환</div>
+          </div>
+
+          <div class="flow-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background: var(--surface); border: 1.5px solid var(--border);"></div>
+              외부 서비스
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #e8f4ee; border: 1.5px solid var(--accent2);"></div>
+              AI 서비스 레이어
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background: #f0f7f4; border: 1.5px solid var(--accent);"></div>
+              결과 데이터
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · 핵심 기술 구현 -->
+      <div class="content-section">
+        <p class="content-label">04 · TECHNICAL DETAILS</p>
+        <h2 class="content-title">핵심 기술 구현</h2>
+
+        <div class="feature-list">
+
+          <div class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>의류 물성치 산출 — 보간·외삽 기반 물성 테이블 구축</strong>
+              <span>
+                면/폴리 혼방 비율(0~100%)별 열저항(R_ct)·수증기저항(R_et)·공기투과도(AP)는
+                실측 포인트가 드문드문 존재합니다.
+                R_ct는 scipy <code>interp1d</code> linear 보간으로 공백을 채우고,
+                R_et·AP는 경계 바깥까지 extrapolate하여 전 구간을 커버했습니다.
+                두께(thin/normal/thick)에 따라 보정 계수(예: thin → R_ct×0.85, AP×1.15)를 곱해
+                얇을수록 통기성이 높고 두꺼울수록 보온성이 높은 물리적 특성을 반영했습니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>UTCI 기반 환경 지표 변환 및 물리 기반 Comfort Score 라벨 생성</strong>
+              <span>
+                날씨 원시값(Ta·RH·Va·cloud)을 열환경 국제 지표 UTCI로 변환합니다.
+                구름량으로 평균복사온도를 근사(<em>Tmrt = Ta + δ, δ = 2 + 6 × (1 − cloud/100)</em>)하고
+                pythermalcomfort 라이브러리로 UTCI를 산출합니다.
+                Comfort Score는 UTCI 기준 cold/heat demand를 구하고
+                보온 부족(cold penalty), 보온 과다(heat penalty),
+                수분 배출 부족(moisture penalty), 일교차 불안정(instability penalty)을 합산해
+                <em>score = clamp(1.0 − total_penalty)</em>로 계산합니다.
+                날씨 유형별 스트레스 계수(clear=1.00 → snow=1.25)도 적용됩니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>PyTorch MLP 회귀 모델 설계 및 학습 — ComfortMLP</strong>
+              <span>
+                9차원 입력(R_ct, R_et, AP, UTCI, temp_range, weather one-hot×4)을 받는
+                <strong>ComfortMLP</strong>를 설계했습니다.
+                구조: <em>Linear(9→32) → SiLU → Dropout(0.1) → Linear(32→16) → SiLU → Dropout(0.1) → Linear(16→1).</em>
+                옵티마이저 AdamW(lr=1e-3, weight_decay=1e-4), 손실함수 MSE,
+                Early Stopping(patience=20, min_delta=1e-4)을 적용했습니다.
+                데이터셋은 UTCI 기준 cold/heat regime 층화 분할(train 80 / val 10 / test 10)로
+                구성해 환경 불균형을 방지했으며, seed=42로 재현성을 확보했습니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-num">4</div>
+            <div class="feature-text">
+              <strong>Time-Decay 가중 userBias / itemBias 분리 재정렬</strong>
+              <span>
+                사용자의 과거 피드백 로그(방향 −1/0/+1, 타임스탬프, 선택 의류 ID)를
+                시간순 정렬 후 <em>w_i = 1 − (total − i − 1) / total</em> 공식으로
+                최신 로그에 높은 가중치를 부여합니다.
+                userBias = Σ(direction×w) / Σw 로 사용자 전체 선호 방향을,
+                itemBias_j = Σ(direction×w, j가 선택된 로그) / Σw 로 아이템별 선호도를
+                분리 계산합니다.
+                최종 rank_score = base_score + α × userBias × itemBias (α=0.15)로
+                추론 점수에 개인화 보정을 더해 재정렬합니다.
+                피드백 로그 5개 미만 시 재정렬을 건너뛰고 원본 점수를 반환합니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-num">5</div>
+            <div class="feature-text">
+              <strong>FastAPI 추론 API — AI 로직·서비스 로직 분리 설계</strong>
+              <span>
+                <strong>POST /recommend/blend-ratio</strong>: 피드백 없이 순수 comfort score만 계산해 반환합니다.<br>
+                <strong>POST /api/feedback/adaptive</strong>: 1차 체감 점수 계산 후 피드백 기반 재정렬까지 한 번에 처리합니다.
+                Pydantic 스키마(Context, Item, BlendRatioFeedbackRequest 등)로 요청/응답을 엄격하게 검증하고,
+                추론 서비스(<code>blend_ratio_service.py</code>)와
+                재정렬 서비스(<code>compute_bias.py</code>)를 분리해
+                각 책임이 명확하도록 설계했습니다.
+                Swagger UI(http://localhost:8000/docs)로 전 엔드포인트 테스트 및 스키마 검증을 진행했습니다.
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 05 · 트러블슈팅 -->
+      <div class="content-section">
+        <p class="content-label">05 · TROUBLE SHOOTING</p>
+        <h2 class="content-title">문제 해결 과정</h2>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: cold/heat 환경 데이터 불균형으로 검증 손실 편향</p>
+          <p class="trouble-a">
+            기상 조건 조합으로 시뮬레이션 데이터를 생성하다 보니 저온 환경(UTCI ≤ 26)이
+            고온 환경보다 훨씬 많이 생성되어, 검증·테스트 셋에서 열 스트레스 구간의 평가가
+            제대로 이뤄지지 않는 문제가 있었습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: UTCI 기반 regime 층화 분할 도입</p>
+          <p class="trouble-a">
+            <code>infer_regime_from_utci()</code>로 각 샘플을 heat / cold_neutral 두 그룹으로 구분하고,
+            그룹별로 독립적으로 80/10/10 분할 후 합산하는 regime-aware split을 구현했습니다.
+            이를 통해 양 구간이 균형 있게 배분되어 모델이 극단 기온 조건에서도
+            합리적인 점수를 출력하게 되었습니다.
+          </p>
+        </div>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: Spring Boot에서 두께 값을 대문자("THIN")로 전달 → KeyError 발생</p>
+          <p class="trouble-a">
+            모델 전처리 코드 <code>get_cloth_properties()</code>는 "thin"/"normal"/"thick" 소문자를 기대하는데,
+            Spring Boot 쪽이 Enum을 대문자로 직렬화해 "THIN" 형태로 보내면서
+            두께 보정 계수 딕셔너리 조회 시 KeyError가 발생했습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: normalize_thickness() 변환 레이어 추가</p>
+          <p class="trouble-a">
+            FastAPI 서비스 레이어 양쪽(<code>blend_ratio_service.py</code>, <code>compute_bias.py</code>)에
+            <code>normalize_thickness()</code> 함수를 배치해 .upper() 매핑 후 소문자로 변환했습니다.
+            Spring Boot의 Enum 직렬화 방식에 의존하지 않고 안정적으로 처리하게 되었습니다.
+          </p>
+        </div>
+
+        <div class="trouble-card">
+          <p class="trouble-q">🔴 문제: 피드백 로그 부족 시 bias 분모 0 → NaN·극단값 반환</p>
+          <p class="trouble-a">
+            사용자가 처음 서비스를 이용하거나 피드백을 거의 남기지 않은 경우,
+            분모가 0에 수렴하거나 bias 값이 극단값을 가져
+            재정렬 후 점수가 음수나 100 초과값으로 뒤집히는 문제가 있었습니다.
+          </p>
+        </div>
+        <div class="trouble-card">
+          <p class="trouble-q">🟢 해결: min_samples 임계값 가드 및 분모 0 방어 처리</p>
+          <p class="trouble-a">
+            <code>apply_bias_and_rerank()</code>에 <code>min_samples=5</code> 가드를 추가해
+            로그 수가 5개 미만이면 bias 계산을 건너뛰고 원본 comfort score 순으로 반환합니다.
+            분모가 0인 경우를 <code>if user_den &gt; 0</code> 조건으로 방어해
+            어떤 상황에서도 NaN이 응답에 포함되지 않도록 했습니다.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 06 · 회고 -->
+      <div class="content-section">
+        <p class="content-label">06 · RETROSPECTIVE</p>
+        <h2 class="content-title">프로젝트 회고</h2>
+        <div class="retro-grid">
+          <div class="retro-card">
+            <div class="retro-icon">✅</div>
+            <div class="retro-label">잘 된 점</div>
+            <p class="retro-text">
+              실측 착용 데이터 없이 UTCI·물성치 기반 물리 모델로 합리적인 학습 라벨을 직접 생성한 점이
+              가장 큰 성취였습니다. 시뮬레이션 데이터만으로도 실제 환경에 가까운 comfort 점수를
+              안정적으로 예측하는 모델을 완성했으며, AI 추론 로직과 서비스 로직을 명확히 분리해
+              팀 내 백엔드 연동이 원활하게 이뤄졌습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🔧</div>
+            <div class="retro-label">아쉬운 점</div>
+            <p class="retro-text">
+              시뮬레이션 기반 라벨이라 실제 사람이 느끼는 주관적 체감과 완벽히 일치하지 않습니다.
+              time-decay 재정렬은 피드백 양이 쌓일수록 효과가 나타나는 구조여서
+              초기 사용자에게는 개인화 효과가 제한적이었습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">💡</div>
+            <div class="retro-label">배운 점</div>
+            <p class="retro-text">
+              UTCI처럼 도메인 표준 지표를 feature로 직접 활용하는 것이 단순 기온보다 훨씬 강력한
+              입력이 됨을 실감했습니다. PyTorch 전체 학습 파이프라인(데이터셋 → 데이터로더 →
+              모델 → 옵티마이저 → Early Stopping → 아티팩트 저장)을 처음부터 끝까지 단독 설계하며
+              구조화된 ML 코드 작성 역량을 키웠습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🚀</div>
+            <div class="retro-label">다음 목표</div>
+            <p class="retro-text">
+              실제 사용자의 착용 피드백 데이터가 쌓이면 시뮬레이션 라벨 대신 실데이터로
+              파인튜닝하는 파이프라인을 구축하고 싶습니다. 또한 time-decay 재정렬을
+              Contextual Bandit 방식으로 대체해 개인화 정확도를 더 높이는 것을 목표로 삼겠습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 사이드바 -->
+    <aside class="detail-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">PROJECT INFO</p>
+        <div class="info-row">
+          <span class="info-key">기간</span>
+          <span class="info-val">2025.12 – 2026.01<br>(6주)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">유형</span>
+          <span class="info-val">팀 (3인)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">역할</span>
+          <span class="info-val">AI 추론 모델 설계<br>FastAPI 서버 구현<br>데이터 파이프라인</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">상태</span>
+          <span class="info-val">개발 완료</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">TECH STACK</p>
+        <div class="stack-list">
+          <div class="stack-item"><span class="stack-dot"></span>Python 3.11</div>
+          <div class="stack-item"><span class="stack-dot"></span>PyTorch (MLP 회귀)</div>
+          <div class="stack-item"><span class="stack-dot"></span>FastAPI / Pydantic</div>
+          <div class="stack-item"><span class="stack-dot"></span>pythermalcomfort (UTCI)</div>
+          <div class="stack-item"><span class="stack-dot"></span>scipy / pandas / numpy</div>
+          <div class="stack-item"><span class="stack-dot"></span>Docker (컨테이너)</div>
+          <div class="stack-item"><span class="stack-dot"></span>Swagger UI (API 검증)</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">LINKS</p>
+        <div class="sidebar-links">
+          <a href="https://github.com/Codi-ON/CodiON" class="sidebar-link" target="_blank">↗ GitHub 저장소</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- 다음 프로젝트 -->
+  <div class="next-section">
+    <div class="next-inner">
+      <div>
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project5.html" class="next-title">프로젝트 05 →</a>
+      </div>
+      <a href="project5.html" class="next-arrow">→</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 고건우. ALL RIGHTS RESERVED.</p>
+    <p>BUILT WITH HTML / CSS / JS</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>
