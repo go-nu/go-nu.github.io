@@ -196,14 +196,16 @@
 
 .gallery-img {
   width: 100%;
-  aspect-ratio: 16/9;
+  max-height: 560px;
+  min-height: 200px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--muted);
@@ -213,10 +215,15 @@
 .gallery-img img,
 .gallery-img video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
+  align-self: flex-start;
 }
+
+.gallery-img::-webkit-scrollbar { width: 5px; }
+.gallery-img::-webkit-scrollbar-track { background: var(--surface); }
+.gallery-img::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.gallery-img::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
 .gallery-caption {
   font-size: 0.78rem;
