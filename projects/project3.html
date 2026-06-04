@@ -154,7 +154,6 @@
                 K-Food · K-Beauty · Location 세 섹션이 하나의 <code>BoardController</code> 서블릿을 공유합니다.
                 요청 URL(<code>*.do</code>)과 <code>category</code> 파라미터로 분기 처리하여
                 게시글 목록·상세·작성·수정·삭제를 카테고리에 맞게 라우팅했습니다.
-                파일 첨부(<code>multipart/form-data</code>), 키워드 검색, 페이지네이션, 좋아요(AJAX), 댓글 CRUD까지 포함합니다.
               </span>
             </div>
           </div>
@@ -176,7 +175,7 @@
             <div class="feature-text">
               <strong>관리자 페이지 — 체험 활동 관리 및 예약 현황</strong>
               <span>
-                체험 활동 CRUD(등록·수정·삭제, D-day 뱃지 표시), 활동별 예약 내역 인라인 펼치기(Bootstrap Collapse),
+                활동별 예약 내역 인라인 펼치기(Bootstrap Collapse),
                 전체 프로그램 테이블에서 예약자·연락처·인원 현황 확인, 지도 데이터(map_loc) CRUD를 구현했습니다.
                 통계 차트는 Chart.js의 Bar + Line 혼합 차트로 월별 전체·남성·여성 방문자 수를 시각화했습니다.
                 관리자 전용 공지 게시글을 food / beauty / location 카테고리별로 작성할 수 있는 진입점도 제공합니다.
@@ -203,16 +202,6 @@
       <div class="content-section">
         <p class="content-label">05 · TROUBLE SHOOTING</p>
         <h2 class="content-title">문제 해결 과정</h2>
-
-        <div class="trouble-card">
-          <p class="trouble-q">문제: multipart/form-data 환경에서 일반 파라미터 누락</p>
-          <p class="trouble-a">
-            게시글 수정 시 파일 첨부와 일반 텍스트 필드를 함께 전송하면 <code>request.getParameter()</code>가 <code>null</code>을 반환했습니다.
-            <code>enctype="multipart/form-data"</code>를 사용하면 파라미터가 Part 객체로 처리되어 기존 방식으로 값을 꺼낼 수 없었기 때문입니다.
-            <code>getValueFromPart(Part part)</code> 메서드를 작성해 <code>InputStreamReader</code>로 Part 스트림을 UTF-8로 읽어 문자열로 변환했습니다.
-            파일 파트와 텍스트 파트를 분리해 처리함으로써 수정 기능에서 제목·내용·카테고리를 안정적으로 받을 수 있게 되었습니다.
-          </p>
-        </div>
 
         <div class="trouble-card">
           <p class="trouble-q">문제: 단일 게시판을 카테고리별로 분리할 때 URL 라우팅 혼선</p>
@@ -259,7 +248,6 @@
             <div class="retro-icon">🚀</div>
             <div class="retro-label">다음 목표</div>
             <p class="retro-text">
-              Spring Boot와 JPA로 동일한 서비스를 마이그레이션해 프레임워크가 해소해 주는 보일러플레이트를 체감하고,
               클라우드 환경(AWS EC2 + RDS)에 직접 배포해 운영 경험을 쌓고 싶습니다.
             </p>
           </div>

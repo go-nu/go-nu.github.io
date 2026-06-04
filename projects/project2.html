@@ -66,7 +66,7 @@
           클라우드를 거쳐 <strong>스마트폰과 웨어러블</strong>에 즉각 알림을 전달하는 종단 간(end-to-end) IoT 시스템을 구현했습니다.
         </p>
         <p class="content-text">
-          4인 팀 프로젝트로 진행했으며, 저는 <strong>라즈베리파이 추론 실행 · Firebase Cloud Messaging 전송 ·
+          3인 팀 프로젝트로 진행했으며, 저는 <strong>라즈베리파이 추론 실행 · Firebase Cloud Messaging 전송 ·
           Android 알림 수신 · 스마트 워치 알림 연동</strong> 을 담당했습니다.
           CNN 모델이 분류한 결과를 실시간으로 사용자 기기까지 안정적으로 전달하는 전체 파이프라인을 설계하고 구현했습니다.
         </p>
@@ -237,7 +237,7 @@
             <div class="retro-label">잘 된 점</div>
             <p class="retro-text">
               마이크 → 추론 → DB → FCM → 앱·워치로 이어지는 전체 파이프라인을 직접 설계하고 연결했습니다.
-              각 컴포넌트를 독립적으로 구현해 디버깅이 용이했고, 팀원과의 인터페이스(DB 경로 스키마)를 명확히 정의해 통합 시 충돌이 없었습니다.
+              각 컴포넌트를 독립적으로 구현해 디버깅이 용이했습니다.
             </p>
           </div>
           <div class="retro-card">
@@ -261,8 +261,8 @@
             <div class="retro-icon">🚀</div>
             <div class="retro-label">다음 목표</div>
             <p class="retro-text">
-              TensorFlow Lite 및 Edge TPU를 활용한 모델 경량화를 시도해보고 싶습니다.
-              또한 다중 마이크 배열 신호 처리를 개선해 방향 정확도를 4방향에서 8방향 이상으로 확장하는 것이 다음 도전입니다.
+              학습시킨 음성 데이터에 노이즈가 많아 구분 정확도가 아쉬웠습니다. 노이즈가 없는 깨끗한 데이터를 사용하거나 노이즈를 제거하는 전처리 방식을 추가하고 싶습니다.
+              또한 다중 마이크 배열 신호 처리를 개선해 방향 정확도를 4방향에서 8방향 이상으로 확장하는 것을 시도해보고 싶습니다.
             </p>
           </div>
         </div>
@@ -281,7 +281,7 @@
         </div>
         <div class="info-row">
           <span class="info-key">유형</span>
-          <span class="info-val">팀 (4인)<br>캡스톤 디자인</span>
+          <span class="info-val">팀 (3인)<br>캡스톤 디자인</span>
         </div>
         <div class="info-row">
           <span class="info-key">역할</span>

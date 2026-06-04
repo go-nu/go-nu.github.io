@@ -232,21 +232,21 @@
             <div class="feature-num">3</div>
             <div class="feature-text">
               <strong>Model 1 — BiGRU 타이핑 손 방향 분류</strong>
-              <span>7차원 IMU 시계열(key ASCII + timestamp + ax, ay, az, gx, gy)을 입력으로 받는 양방향 GRU(hidden=32, layers=4)로 좌손(0)·우손(1)·양손(2) 3-class 분류를 수행합니다. CrossEntropyLoss와 Adam(lr=1e-3)으로 학습합니다.</span>
+              <span>7차원 IMU 시계열(key ASCII + ax, ay, az, gx, gy, gz)을 입력으로 받는 BiGRU(hidden=32, layers=4)로 좌손(0)·우손(1)·양손(2) 3-class 분류를 수행합니다. CrossEntropyLoss와 Adam(lr=1e-3)으로 학습합니다.</span>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-num">4</div>
             <div class="feature-text">
               <strong>Model 2 — BiGRU 사용자 이진 인증</strong>
-              <span>키스트로크별 IMU 6축의 95th/5th 백분위수 통계 + 키 유지 시간 + Model 1 출력을 결합한 15차원 피처 벡터를 BiGRU(hidden=8, layers=4)로 학습합니다. Sigmoid + BCELoss로 본인(0) / 타인(1)을 이진 분류하며, Model 1의 손 방향 컨텍스트가 인증 정확도를 향상시킵니다.</span>
+              <span>key ASCII + 키스트로크별 IMU 6축의 95th/5th 백분위수 통계 + 키 유지 시간 + Model 1 출력을 결합한 15차원 피처 벡터를 BiGRU(hidden=8, layers=4)로 학습합니다. Sigmoid + BCELoss로 본인(0) / 타인(1)을 이진 분류하며, Model 1의 손 방향 컨텍스트가 인증 정확도를 향상시킵니다.</span>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-num">5</div>
             <div class="feature-text">
-              <strong>MATLAB IMU 시각화 및 데이터 검증</strong>
-              <span>수집된 IMU 데이터를 관성 좌표계로 변환하여 3D 자세 시각화 및 각 센서 신호 플롯을 제공합니다. 가속도계 캘리브레이션 파일(acce_calib.txt)을 자동 적용하여 수집 데이터의 품질을 검증합니다.</span>
+              <strong>모델 실험 결과(2-Step Acc.)</strong>
+              <span>[RNN: 90.00] [LSTM: 80.83] [GRU: 80.28] [BiLSTM: 89.17] [BiGRU: 93.33]</span>
             </div>
           </div>
         </div>
