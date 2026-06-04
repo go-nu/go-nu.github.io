@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 과실비율 판정 서비스 | 고건우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">고건우</a>
+    <a href="../index.html#projects" class="nav-back">목록으로</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="hero-meta fadeup">
+      <span class="hero-num">PROJECT 07</span>
+      <span class="hero-divider"></span>
+      <span class="hero-category">팀 프로젝트 / AI · RAG</span>
+    </div>
+    <div class="fadeup delay-1">
+      <div class="wip-badge">
+        <span class="wip-dot"></span>
+        개발 진행 중
+      </div>
+    </div>
+    <h1 class="detail-title fadeup delay-1">
+      AI 과실비율<br><span>판정 서비스</span>
+    </h1>
+    <p class="detail-summary fadeup delay-2">
+      교통사고 블랙박스 영상을 업로드하면 AI가 상황을 분석하고,
+      과실비율 기준서(PDF)를 RAG 기반으로 참조하여 참고 의견을 제공하는 서비스입니다.
+    </p>
+    <div class="detail-tags fadeup delay-2">
+      <span class="detail-tag">Python</span>
+      <span class="detail-tag">LangChain</span>
+      <span class="detail-tag">PDFPlumber</span>
+      <span class="detail-tag">BGE-M3</span>
+      <span class="detail-tag">ChromaDB</span>
+    </div>
+  </section>
+
+  <!-- 대표 썸네일 -->
+  <div class="thumb-wrap">
+    <img src="../assets/images/project7/thumbnail.html.png" alt="AI 과실비율 판정 서비스 디자인 초안">
+  </div>
+
+  <!-- BODY -->
+  <div class="detail-body">
+
+    <!-- 메인 콘텐츠 -->
+    <main class="detail-main">
+
+      <!-- 01 · 프로젝트 개요 -->
+      <div class="content-section">
+        <p class="content-label">01 · OVERVIEW</p>
+        <h2 class="content-title">프로젝트 개요</h2>
+        <p class="content-text">
+          교통사고 발생 시 블랙박스 영상을 기반으로 AI가 과실비율 참고 의견을 제공하는 서비스입니다.
+          보험사 기준의 과실비율 기준서(PDF)를 RAG(Retrieval-Augmented Generation) 파이프라인으로 구축하여,
+          AI가 정확한 기준 문서를 근거로 판단을 내릴 수 있도록 합니다.
+        </p>
+        <p class="content-text">
+          사용자는 영상을 업로드하면 분석이 자동으로 진행되며, 결과 화면에서 과실 비율과 근거 조항을 확인할 수 있습니다.
+          현재 팀 개발이 진행 중이며, 각 파트별로 분담하여 작업 중입니다.
+        </p>
+      </div>
+
+      <!-- 02 · 담당 역할 -->
+      <div class="content-section">
+        <p class="content-label">02 · MY ROLE</p>
+        <h2 class="content-title">담당 역할</h2>
+
+        <div class="role-highlight">
+          <strong>담당 · 문서 RAG 파이프라인</strong>
+          AI가 과실비율 기준서를 검색·참조할 수 있도록 PDF 문서를 벡터 DB에 인덱싱하는 전체 파이프라인을 담당하고 있습니다.
+        </div>
+
+        <p class="content-text">
+          기준서에 포함된 표(table)는 일반 텍스트 추출로는 구조가 무너지는 문제가 있습니다.
+          PDFPlumber로 표를 별도 파싱하여 Markdown 형태로 변환하고,
+          BGE-M3 임베딩 모델로 벡터화 후 ChromaDB에 저장합니다.
+        </p>
+
+        <!-- 파이프라인 흐름 -->
+        <div class="flow-simple">
+          <div class="flow-node-s">PDF<br>(기준서)</div>
+          <span class="flow-arrow-s">→</span>
+          <div class="flow-node-s mine">PDFPlumber<br>표 파싱</div>
+          <span class="flow-arrow-s">→</span>
+          <div class="flow-node-s mine">텍스트 청킹<br>+ Markdown 변환</div>
+          <span class="flow-arrow-s">→</span>
+          <div class="flow-node-s mine">BGE-M3<br>임베딩</div>
+          <span class="flow-arrow-s">→</span>
+          <div class="flow-node-s mine">ChromaDB<br>벡터 저장</div>
+          <span class="flow-arrow-s">→</span>
+          <div class="flow-node-s">LLM<br>답변 생성</div>
+        </div>
+        <p style="font-size:0.78rem; color:#aaa; margin-top:0.6rem;">초록 노드 = 담당 영역</p>
+      </div>
+
+      <!-- 03 · 시스템 구조 -->
+      <div class="content-section">
+        <p class="content-label">03 · SYSTEM</p>
+        <h2 class="content-title">서비스 흐름</h2>
+        <p class="content-text">
+          사용자의 영상 업로드부터 결과 반환까지의 전체 흐름입니다.
+          각 파트는 현재 개발 중이며, 인터페이스 설계(와이어프레임)가 선행되어 있습니다.
+        </p>
+
+        <div class="flow-simple" style="flex-direction: column; align-items: flex-start; gap: 0.7rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+            <div class="flow-node-s">영상 업로드</div>
+            <span class="flow-arrow-s">→</span>
+            <div class="flow-node-s">사고 상황 분석<br>(Vision AI)</div>
+            <span class="flow-arrow-s">→</span>
+            <div class="flow-node-s mine">기준서 검색<br>(RAG)</div>
+            <span class="flow-arrow-s">→</span>
+            <div class="flow-node-s">과실비율 참고의견<br>생성</div>
+            <span class="flow-arrow-s">→</span>
+            <div class="flow-node-s">결과 화면 표시</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · 화면 디자인 초안 -->
+      <div class="content-section">
+        <p class="content-label">04 · DESIGN</p>
+        <h2 class="content-title">화면 디자인 초안</h2>
+        <div class="gallery-grid">
+
+          <div class="gallery-item full">
+            <div class="gallery-img">
+              <img src="../assets/images/project7/landing.html.png" alt="랜딩 페이지 초안">
+            </div>
+            <div class="gallery-caption">
+              <strong>랜딩 페이지</strong>
+              서비스 소개와 업로드 진입점을 제공하는 메인 화면 초안입니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="../assets/images/project7/upload.html.png" alt="영상 업로드 화면 초안">
+            </div>
+            <div class="gallery-caption">
+              <strong>영상 업로드</strong>
+              블랙박스 영상 파일을 업로드하는 화면 초안입니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="../assets/images/project7/analyzing.html.png" alt="분석 중 화면 초안">
+            </div>
+            <div class="gallery-caption">
+              <strong>분석 중</strong>
+              AI가 영상을 분석하는 동안 표시되는 로딩 화면 초안입니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="../assets/images/project7/search.html.png" alt="기준서 검색 화면 초안">
+            </div>
+            <div class="gallery-caption">
+              <strong>기준서 검색 (RAG)</strong>
+              과실비율 기준서에서 관련 조항을 검색·조회하는 화면 초안입니다.
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src="../assets/images/project7/result.html.png" alt="결과 화면 초안">
+            </div>
+            <div class="gallery-caption">
+              <strong>판정 결과</strong>
+              AI가 분석한 과실비율 참고 의견과 근거 조항을 보여주는 결과 화면 초안입니다.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="wip-note">
+        이 페이지는 프로젝트 진행 중 작성되었습니다.<br>
+        개발 완료 후 주요 기능 설명, 화면 스크린샷, 회고 등이 추가될 예정입니다.
+      </div>
+
+    </main>
+
+    <!-- 사이드바 -->
+    <aside class="detail-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">PROJECT INFO</p>
+        <div class="info-row">
+          <span class="info-key">기간</span>
+          <span class="info-val">2025.05 – 진행 중</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">유형</span>
+          <span class="info-val">팀 프로젝트</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">담당</span>
+          <span class="info-val">문서 RAG 파이프라인<br>PDF 파싱 · 벡터 인덱싱</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">상태</span>
+          <span class="info-val" style="color:#b45309; font-weight:700;">⚙ 개발 중</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">TECH STACK</p>
+        <div class="stack-list">
+          <div class="stack-item"><span class="stack-dot"></span>Python 3</div>
+          <div class="stack-item"><span class="stack-dot"></span>LangChain</div>
+          <div class="stack-item"><span class="stack-dot"></span>PDFPlumber</div>
+          <div class="stack-item"><span class="stack-dot"></span>BGE-M3 (Embedding)</div>
+          <div class="stack-item"><span class="stack-dot"></span>ChromaDB</div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- 프로젝트 네비게이션 -->
+  <div class="next-section">
+    <div class="next-inner">
+      <div>
+        <p class="next-label">← PREV PROJECT</p>
+        <a href="project6.html" class="next-title">← IMU 키스트로크 사용자 인증</a>
+      </div>
+      <div style="text-align: right;">
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project1.html" class="next-title">스마트 자동 노트북 스탠드 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 고건우. ALL RIGHTS RESERVED.</p>
+    <p>BUILT WITH HTML / CSS / JS</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

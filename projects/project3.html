@@ -41,7 +41,7 @@
       <span class="detail-tag">Naver Maps API</span>
     </div>
     <div class="detail-links fadeup delay-3">
-      <a href="https://github.com/go-nu/GONGGAN" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
+      <a href="https://github.com/go-nu/GongGan" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
     </div>
   </section>
 
@@ -205,30 +205,20 @@
         <h2 class="content-title">문제 해결 과정</h2>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: multipart/form-data 환경에서 일반 파라미터 누락</p>
+          <p class="trouble-q">문제: multipart/form-data 환경에서 일반 파라미터 누락</p>
           <p class="trouble-a">
             게시글 수정 시 파일 첨부와 일반 텍스트 필드를 함께 전송하면 <code>request.getParameter()</code>가 <code>null</code>을 반환했습니다.
             <code>enctype="multipart/form-data"</code>를 사용하면 파라미터가 Part 객체로 처리되어 기존 방식으로 값을 꺼낼 수 없었기 때문입니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: Part 스트림에서 직접 값을 읽는 헬퍼 메서드 작성</p>
-          <p class="trouble-a">
             <code>getValueFromPart(Part part)</code> 메서드를 작성해 <code>InputStreamReader</code>로 Part 스트림을 UTF-8로 읽어 문자열로 변환했습니다.
             파일 파트와 텍스트 파트를 분리해 처리함으로써 수정 기능에서 제목·내용·카테고리를 안정적으로 받을 수 있게 되었습니다.
           </p>
         </div>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: 단일 게시판을 카테고리별로 분리할 때 URL 라우팅 혼선</p>
+          <p class="trouble-q">문제: 단일 게시판을 카테고리별로 분리할 때 URL 라우팅 혼선</p>
           <p class="trouble-a">
             food · beauty · location 세 섹션이 동일한 <code>BoardController</code>를 공유하다 보니,
             카테고리 파라미터가 누락된 요청에서 기본값 처리가 없어 엉뚱한 목록이 노출되거나 리다이렉트 URL이 깨지는 문제가 발생했습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: category 파라미터 기본값 처리 및 모든 분기에 명시적 전달</p>
-          <p class="trouble-a">
             컨트롤러의 모든 분기 지점에서 <code>category</code> 파라미터가 null이거나 빈 문자열이면 <code>"food"</code>로 치환하는 방어 코드를 추가했습니다.
             리다이렉트 URL에도 <code>category</code>를 쿼리스트링으로 명시적으로 포함시켜, 목록·상세·수정·삭제 어느 흐름에서도 카테고리 맥락이 유지되도록 했습니다.
           </p>
@@ -324,14 +314,17 @@
     </aside>
   </div>
 
-  <!-- 다음 프로젝트 -->
+  <!-- 프로젝트 네비게이션 -->
   <div class="next-section">
     <div class="next-inner">
       <div>
-        <p class="next-label">NEXT PROJECT</p>
-        <a href="project4.html" class="next-title">프로젝트 04 →</a>
+        <p class="next-label">← PREV PROJECT</p>
+        <a href="project2.html" class="next-title">← IoT 소리 감지 알림 시스템</a>
       </div>
-      <a href="project4.html" class="next-arrow">→</a>
+      <div style="text-align: right;">
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project4.html" class="next-title">인테리어 쇼핑 플랫폼 WooriZip →</a>
+      </div>
     </div>
   </div>
 

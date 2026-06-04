@@ -40,15 +40,15 @@
       <span class="detail-tag">MATLAB</span>
       <span class="detail-tag">IEEE Sensors Journal</span>
     </div>
-    <div class="detail-links fadeup delay-3">
+    <!-- <div class="detail-links fadeup delay-3">
       <a href="https://github.com/username/App_keyStroke" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
-    </div>
+    </div> -->
   </section>
 
   <!-- 대표 썸네일 -->
   <div class="thumb-wrap">
-    <!-- <img src="../assets/images/project5/thumb.png" alt="키스트로크 인증 시스템 대표 이미지"> -->
-    <p class="thumb-placeholder">ANDROID APP · IMU DATA · BiGRU MODEL PIPELINE</p>
+    <img src="../assets/images/project6/모델구조.png" alt="키스트로크 인증 시스템 대표 이미지">
+    <!-- <p class="thumb-placeholder">ANDROID APP · IMU DATA · BiGRU MODEL PIPELINE</p> -->
   </div>
 
   <!-- BODY -->
@@ -81,48 +81,20 @@
         <h2 class="content-title">주요 화면 및 결과</h2>
         <div class="gallery-grid">
 
-          <!-- 대표 화면 - 전체 너비 -->
           <div class="gallery-item full">
             <div class="gallery-img">
-              <!-- <img src="../assets/images/project5/app_main.png" alt="앱 메인 화면"> -->
-              Android 앱 메인 화면 스크린샷
+              <img src="../assets/images/project6/모델구조.png" alt="캐스케이드 BiGRU 모델 전체 구조">
             </div>
             <div class="gallery-caption">
-              <strong>데이터 수집 앱 — 메인 화면</strong>
-              사용자 이름, 사용 손(좌/우), 테스트 손을 입력한 뒤 Start 버튼을 누르면
-              IMU 센서 기록이 시작됩니다.
-            </div>
-          </div>
-
-          <!-- 2단 그리드 화면들 -->
-          <div class="gallery-item">
-            <div class="gallery-img">
-              <!-- <img src="../assets/images/project5/app_sub.png" alt="타이핑 세션 화면"> -->
-              타이핑 세션 화면 (SubActivity)
-            </div>
-            <div class="gallery-caption">
-              <strong>타이핑 세션 화면</strong>
-              우손·좌손·양손 3개 입력 필드에서 3개 chapter를 순차 진행하며
-              키 입력과 IMU 데이터를 동기 수집합니다.
+              <strong>캐스케이드 BiGRU 모델 전체 구조</strong>
+              IMU 수집부터 전처리·피처 추출·두 BiGRU 모델의 직렬 연결까지
+              전체 파이프라인 구조를 나타냅니다.
             </div>
           </div>
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <!-- <img src="../assets/images/project5/imu_vis.png" alt="IMU 데이터 시각화"> -->
-              MATLAB IMU 데이터 시각화
-            </div>
-            <div class="gallery-caption">
-              <strong>IMU 데이터 시각화</strong>
-              MATLAB 스크립트로 수집된 가속도계·자이로스코프 신호와
-              관성 좌표계 3D 자세를 시각화하여 데이터 품질을 검증합니다.
-            </div>
-          </div>
-
-          <div class="gallery-item">
-            <div class="gallery-img">
-              <!-- <img src="../assets/images/project5/model1_result.png" alt="Model 1 학습 결과"> -->
-              Model 1 학습 결과
+              <img src="../assets/images/project6/모델1.png" alt="Model 1 손 방향 분류 결과">
             </div>
             <div class="gallery-caption">
               <strong>Model 1 — 손 방향 분류 결과</strong>
@@ -133,8 +105,7 @@
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <!-- <img src="../assets/images/project5/model2_result.png" alt="Model 2 학습 결과"> -->
-              Model 2 학습 결과
+              <img src="../assets/images/project6/모델2.png" alt="Model 2 사용자 인증 결과">
             </div>
             <div class="gallery-caption">
               <strong>Model 2 — 사용자 인증 결과</strong>
@@ -286,16 +257,11 @@
         <p class="content-label">05 · TROUBLE SHOOTING</p>
         <h2 class="content-title">문제 해결 과정</h2>
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: 가변 길이 키스트로크 시계열의 배치 학습 불가</p>
+          <p class="trouble-q">문제: 가변 길이 키스트로크 시계열의 배치 학습 불가</p>
           <p class="trouble-a">
             사용자마다 타이핑 속도가 달라 동일 키에 대한 IMU 시퀀스 길이가 제각각이었습니다.
             PyTorch DataLoader는 동일한 배치 크기를 요구하기 때문에 단순 제로 패딩만으로는
             의미 없는 0값이 학습 신호에 혼입되는 문제가 있었습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: 키 구간별 균등 선형 보간</p>
-          <p class="trouble-a">
             전체를 단순 패딩하는 대신, 7개 키 구간(chapter에 해당하는 ASCII 그룹)별로
             목표 길이를 비례 배분한 뒤 numpy.interp로 열(column)마다 독립적으로
             선형 보간하여 원래 타이핑 리듬을 최대한 보존했습니다.
@@ -303,16 +269,11 @@
           </p>
         </div>
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: 타이핑 손 방향 정보를 인증 모델에 반영하는 방법</p>
+          <p class="trouble-q">문제: 타이핑 손 방향 정보를 인증 모델에 반영하는 방법</p>
           <p class="trouble-a">
             사용자 인증 모델(Model 2)이 타이핑 손 방향을 모르면 손에 따라 달라지는
             IMU 패턴 차이를 구분하지 못해 인증 정확도가 낮아졌습니다.
             두 모델을 완전히 분리하면 이 맥락 정보가 유실됩니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: 캐스케이드 멀티모달 파이프라인</p>
-          <p class="trouble-a">
             Model 1의 추론 결과(L/R/Both 레이블)를 각 키스트로크 데이터 행에 열로 직접 concat한 뒤
             백분위수 통계 피처를 추출하여 Model 2의 입력 피처(15-dim)에 포함시켰습니다.
             이렇게 하면 Model 2가 손 방향 컨텍스트를 피처로 함께 학습할 수 있어
@@ -340,8 +301,7 @@
             <div class="retro-label">아쉬운 점</div>
             <p class="retro-text">
               데이터셋 규모가 제한적이어서 일반화 성능 검증이 충분하지 않습니다.
-              더 많은 피실험자와 다양한 키보드 환경(맥북, 기계식 키보드 등)에서
-              추가 검증이 필요합니다.
+              더 많은 피실험자를 통한 추가 검증이 필요합니다.
             </p>
           </div>
           <div class="retro-card">
@@ -354,11 +314,12 @@
             </p>
           </div>
           <div class="retro-card">
-            <div class="retro-icon">🚀</div>
-            <div class="retro-label">다음 목표</div>
+            <div class="retro-icon">📋</div>
+            <div class="retro-label">논문 향후 연구</div>
             <p class="retro-text">
-              논문 게재 후 실시간 인증 모듈로 확장하여 온디바이스 추론을 스마트폰 앱에
-              통합하는 것이 목표입니다. Transformer 기반 모델과의 성능 비교도 진행할 계획입니다.
+              논문에서는 Transformer를 포함한 다양한 모델과의 성능 비교 실험,
+              슬라이딩 윈도우 기반 실시간 인증 처리, 온디바이스 추론 모듈의
+              스마트폰 앱 통합을 향후 연구 방향으로 제시하고 있습니다.
             </p>
           </div>
         </div>
@@ -419,14 +380,17 @@
     </aside>
   </div>
 
-  <!-- 다음 프로젝트 -->
+  <!-- 프로젝트 네비게이션 -->
   <div class="next-section">
     <div class="next-inner">
       <div>
-        <p class="next-label">NEXT PROJECT</p>
-        <a href="project6.html" class="next-title">다음 프로젝트 →</a>
+        <p class="next-label">← PREV PROJECT</p>
+        <a href="project5.html" class="next-title">← CodiON – AI 추론 모델</a>
       </div>
-      <a href="project6.html" class="next-arrow">→</a>
+      <div style="text-align: right;">
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project7.html" class="next-title">AI 과실비율 판정 서비스 →</a>
+      </div>
     </div>
   </div>
 

@@ -49,7 +49,7 @@
 
   <!-- 대표 썸네일 -->
   <div class="thumb-wrap">
-    <img src="docs/images/우리집_메인.png" alt="WooriZip 메인 화면" />
+    <img src="../assets/images/project4/우리집_메인.png" alt="WooriZip 메인 화면" />
   </div>
 
   <!-- BODY -->
@@ -85,7 +85,7 @@
 
           <div class="gallery-item full">
             <div class="gallery-img">
-              <img src="docs/images/우리집_메인.png" alt="WooriZip 메인 화면" />
+              <img src="../assets/images/project4/우리집_메인.png" alt="WooriZip 메인 화면" />
             </div>
             <div class="gallery-caption">
               <strong>메인 / 홈 화면</strong>
@@ -97,7 +97,7 @@
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <img src="docs/images/우리집_상품목록.png" alt="상품 목록 페이지" />
+              <img src="../assets/images/project4/우리집_상품목록.png" alt="상품 목록 페이지" />
             </div>
             <div class="gallery-caption">
               <strong>상품 목록</strong>
@@ -108,7 +108,7 @@
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <img src="docs/images/우리집_상세.png" alt="상품 상세 페이지" />
+              <img src="../assets/images/project4/우리집_상세.png" alt="상품 상세 페이지" />
             </div>
             <div class="gallery-caption">
               <strong>상품 상세</strong>
@@ -119,7 +119,7 @@
 
           <div class="gallery-item full">
             <div class="gallery-img">
-              <img src="docs/images/우리집_쿠폰관리.png" alt="관리자 쿠폰 관리" />
+              <img src="../assets/images/project4/우리집_쿠폰관리.png" alt="관리자 쿠폰 관리" />
             </div>
             <div class="gallery-caption">
               <strong>관리자 — 쿠폰 관리</strong>
@@ -130,7 +130,7 @@
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <img src="docs/images/우리집_쿠폰1.png" alt="사용자 쿠폰 수령" />
+              <img src="../assets/images/project4/우리집_쿠폰1.png" alt="사용자 쿠폰 수령" />
             </div>
             <div class="gallery-caption">
               <strong>사용자 쿠폰 수령</strong>
@@ -141,7 +141,7 @@
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <img src="docs/images/우리집_마이페이지.png" alt="마이페이지" />
+              <img src="../assets/images/project4/우리집_마이페이지.png" alt="마이페이지" />
             </div>
             <div class="gallery-caption">
               <strong>마이페이지</strong>
@@ -152,7 +152,7 @@
 
           <div class="gallery-item full">
             <div class="gallery-img">
-              <img src="docs/images/우리집_주문내역.png" alt="관리자 주문 대시보드" />
+              <img src="../assets/images/project4/우리집_주문내역.png" alt="관리자 주문 대시보드" />
             </div>
             <div class="gallery-caption">
               <strong>관리자 — 주문 대시보드</strong>
@@ -163,7 +163,7 @@
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <img src="docs/images/우리집_주문내역2.png" alt="주문 현황 요약" />
+              <img src="../assets/images/project4/우리집_주문내역2.png" alt="주문 현황 요약" />
             </div>
             <div class="gallery-caption">
               <strong>관리자 — 주문 현황 요약</strong>
@@ -174,7 +174,7 @@
 
           <div class="gallery-item">
             <div class="gallery-img">
-              <img src="docs/images/우리집_주문.png" alt="주문 페이지" />
+              <img src="../assets/images/project4/우리집_주문.png" alt="주문 페이지" />
             </div>
             <div class="gallery-caption">
               <strong>주문 / 결제</strong>
@@ -531,17 +531,12 @@
         <h2 class="content-title">문제 해결 과정</h2>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: Interceptor에서 request body를 읽은 후 Controller에서 재사용 불가</p>
+          <p class="trouble-q">문제: Interceptor에서 request body를 읽은 후 Controller에서 재사용 불가</p>
           <p class="trouble-a">
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">POST /recommend/log</code>
             요청에서 Interceptor가
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">request.getReader()</code>로
             JSON body를 읽으면 InputStream이 소진되어, 이후 Controller가 동일 body를 다시 읽을 수 없는 문제가 발생했습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: Interceptor에서 직접 응답 처리 후 return false</p>
-          <p class="trouble-a">
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">/recommend/log</code>
             경로는 body 파싱과 로그 저장 후
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">response.getWriter().write("logged")</code>로
@@ -552,17 +547,12 @@
         </div>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: 회원 탈퇴 시 FK 제약 위반으로 삭제 실패</p>
+          <p class="trouble-q">문제: 회원 탈퇴 시 FK 제약 위반으로 삭제 실패</p>
           <p class="trouble-a">
             Users 엔티티 삭제 시 Order, CartItem, QnaPost, ReviewPost 등 외래 키를 가진 테이블이
             먼저 남아 있어
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">DataIntegrityViolationException</code>이
             발생했습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: 연관 엔티티 역순 수동 삭제 + @OnDelete CASCADE 병행</p>
-          <p class="trouble-a">
             UserService.delete()에서 QnA → 리뷰 → 주문 항목 → 주문 → 장바구니 항목 → 장바구니 → 유저
             순서로 명시적으로 삭제했습니다. UserCoupon처럼 빈번히 삭제되는 연관 엔티티에는
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">@OnDelete(action = OnDeleteAction.CASCADE)</code>를
@@ -571,16 +561,11 @@
         </div>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: 신규 사용자가 FastAPI에 추천 요청 시 KeyError 발생</p>
+          <p class="trouble-q">문제: 신규 사용자가 FastAPI에 추천 요청 시 KeyError 발생</p>
           <p class="trouble-a">
             모델 학습 데이터에 없는 user_id가 FastAPI로 전달될 경우
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">user_map[user_id]</code>
             조회에서 KeyError가 발생하며 서버 오류(500)로 이어졌습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: FastAPI 빈 배열 반환 → Spring Boot 인기 상품 fallback</p>
-          <p class="trouble-a">
             FastAPI에서
             <code style="background: var(--surface); padding: 0.1em 0.4em; border-radius: 3px; border: 1px solid var(--border);">if user_id_raw not in user_map</code>
             조건으로 빈 배열을 반환하도록 수정했습니다.
@@ -688,14 +673,17 @@
     </aside>
   </div>
 
-  <!-- 다음 프로젝트 -->
+  <!-- 프로젝트 네비게이션 -->
   <div class="next-section">
     <div class="next-inner">
       <div>
-        <p class="next-label">NEXT PROJECT</p>
-        <a href="project5.html" class="next-title">프로젝트 05 →</a>
+        <p class="next-label">← PREV PROJECT</p>
+        <a href="project3.html" class="next-title">← K-Culture 종합 플랫폼 GONGGAN</a>
       </div>
-      <a href="project5.html" class="next-arrow">→</a>
+      <div style="text-align: right;">
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project5.html" class="next-title">CodiON – AI 추론 모델 →</a>
+      </div>
     </div>
   </div>
 

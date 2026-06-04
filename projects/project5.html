@@ -413,16 +413,11 @@
         <h2 class="content-title">문제 해결 과정</h2>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: cold/heat 환경 데이터 불균형으로 검증 손실 편향</p>
+          <p class="trouble-q">문제: cold/heat 환경 데이터 불균형으로 검증 손실 편향</p>
           <p class="trouble-a">
             기상 조건 조합으로 시뮬레이션 데이터를 생성하다 보니 저온 환경(UTCI ≤ 26)이
             고온 환경보다 훨씬 많이 생성되어, 검증·테스트 셋에서 열 스트레스 구간의 평가가
             제대로 이뤄지지 않는 문제가 있었습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: UTCI 기반 regime 층화 분할 도입</p>
-          <p class="trouble-a">
             <code>infer_regime_from_utci()</code>로 각 샘플을 heat / cold_neutral 두 그룹으로 구분하고,
             그룹별로 독립적으로 80/10/10 분할 후 합산하는 regime-aware split을 구현했습니다.
             이를 통해 양 구간이 균형 있게 배분되어 모델이 극단 기온 조건에서도
@@ -431,16 +426,11 @@
         </div>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: Spring Boot에서 두께 값을 대문자("THIN")로 전달 → KeyError 발생</p>
+          <p class="trouble-q">문제: Spring Boot에서 두께 값을 대문자("THIN")로 전달 → KeyError 발생</p>
           <p class="trouble-a">
             모델 전처리 코드 <code>get_cloth_properties()</code>는 "thin"/"normal"/"thick" 소문자를 기대하는데,
             Spring Boot 쪽이 Enum을 대문자로 직렬화해 "THIN" 형태로 보내면서
             두께 보정 계수 딕셔너리 조회 시 KeyError가 발생했습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: normalize_thickness() 변환 레이어 추가</p>
-          <p class="trouble-a">
             FastAPI 서비스 레이어 양쪽(<code>blend_ratio_service.py</code>, <code>compute_bias.py</code>)에
             <code>normalize_thickness()</code> 함수를 배치해 .upper() 매핑 후 소문자로 변환했습니다.
             Spring Boot의 Enum 직렬화 방식에 의존하지 않고 안정적으로 처리하게 되었습니다.
@@ -448,16 +438,11 @@
         </div>
 
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: 피드백 로그 부족 시 bias 분모 0 → NaN·극단값 반환</p>
+          <p class="trouble-q">문제: 피드백 로그 부족 시 bias 분모 0 → NaN·극단값 반환</p>
           <p class="trouble-a">
             사용자가 처음 서비스를 이용하거나 피드백을 거의 남기지 않은 경우,
             분모가 0에 수렴하거나 bias 값이 극단값을 가져
             재정렬 후 점수가 음수나 100 초과값으로 뒤집히는 문제가 있었습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: min_samples 임계값 가드 및 분모 0 방어 처리</p>
-          <p class="trouble-a">
             <code>apply_bias_and_rerank()</code>에 <code>min_samples=5</code> 가드를 추가해
             로그 수가 5개 미만이면 bias 계산을 건너뛰고 원본 comfort score 순으로 반환합니다.
             분모가 0인 경우를 <code>if user_den &gt; 0</code> 조건으로 방어해
@@ -561,14 +546,17 @@
     </aside>
   </div>
 
-  <!-- 다음 프로젝트 -->
+  <!-- 프로젝트 네비게이션 -->
   <div class="next-section">
     <div class="next-inner">
       <div>
-        <p class="next-label">NEXT PROJECT</p>
-        <a href="project5.html" class="next-title">프로젝트 05 →</a>
+        <p class="next-label">← PREV PROJECT</p>
+        <a href="project4.html" class="next-title">← 인테리어 쇼핑 플랫폼 WooriZip</a>
       </div>
-      <a href="project5.html" class="next-arrow">→</a>
+      <div style="text-align: right;">
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project6.html" class="next-title">IMU 키스트로크 사용자 인증 →</a>
+      </div>
     </div>
   </div>
 

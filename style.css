@@ -242,7 +242,7 @@ section { padding: 6rem 5vw; }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
@@ -392,8 +392,16 @@ footer p {
 .delay-4 { animation-delay: 0.5s; }
 
 /* RESPONSIVE */
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 768px) {
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   nav { padding: 1rem 5vw; }
   .nav-links { gap: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .projects-grid { grid-template-columns: 1fr; }
 }

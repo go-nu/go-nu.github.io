@@ -40,7 +40,7 @@
       <span class="detail-tag">MIT App Inventor</span>
     </div>
     <div class="detail-links fadeup delay-3">
-      <a href="https://github.com/go-nu/Capstone4_laptopStand" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
+      <a href="https://github.com/go-nu/AIcapstone" class="btn btn-primary" target="_blank">↗ GitHub 보기</a>
       <a href="https://youtu.be/8XAv4ohXPro?si=OB5GZQMncltqTNJD" class="btn btn-outline" target="_blank">↗ 동작 영상</a>
     </div>
   </section>
@@ -266,15 +266,10 @@
           개발 중 마주쳤던 주요 기술적 문제와 해결 방법을 기록합니다.
         </p>
         <div class="trouble-card">
-          <p class="trouble-q">🔴 문제: MediaPipe draw_detection()이 바운딩 박스 크기·중심점을 반환하지 않음</p>
+          <p class="trouble-q">문제: MediaPipe draw_detection()이 바운딩 박스 크기·중심점을 반환하지 않음</p>
           <p class="trouble-a">
             거리·높이 계산에는 얼굴 바운딩 박스의 높이(height)와 중심점(ctr_point) 값이 필요했으나,
             MediaPipe 기본 drawing_utils.py의 draw_detection() 함수는 이 값을 반환하지 않고 화면에 그리기만 했습니다.
-          </p>
-        </div>
-        <div class="trouble-card">
-          <p class="trouble-q">🟢 해결: drawing_utils.py를 직접 수정하여 반환값 추가</p>
-          <p class="trouble-a">
             MediaPipe 패키지의 drawing_utils.py를 직접 수정해 draw_detection() 함수가 height와 ctr_point를 함께 반환하도록 변경했습니다.
             수정된 파일을 프로젝트에 포함하여 사용자가 패키지 파일을 교체하는 방식으로 배포했습니다.
           </p>
@@ -287,12 +282,39 @@
         <h2 class="content-title">프로젝트 회고</h2>
         <div class="retro-grid">
           <div class="retro-card">
+            <div class="retro-icon">✅</div>
+            <div class="retro-label">잘 된 점</div>
+            <p class="retro-text">
+              MediaPipe 얼굴 인식과 Arduino 서보 모터 제어를 실시간으로 연동하는 전체 파이프라인을 구현했습니다.
+              MIT App Inventor 앱으로 개인 맞춤 설정을 Bluetooth로 전송하는 구조까지 포함해,
+              HW·SW·앱 세 레이어를 직접 연결한 완성도 높은 시스템을 완성했습니다.
+            </p>
+          </div>
+          <div class="retro-card">
             <div class="retro-icon">🔧</div>
-            <div class="retro-label">보완점</div>
+            <div class="retro-label">아쉬운 점</div>
             <p class="retro-text">
               3D 프린터로 제작한 부품의 내구성이 충분하지 않아 장기 사용 시 파손 위험이 있었습니다.
               또한 노트북과 모터의 하중 배분이 고려되지 않아 무게 중심을 잡는 데 어려움이 있었으며,
               이는 이후 설계 시 소재 선정과 하중 분석을 사전에 검토해야 함을 느꼈습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">💡</div>
+            <div class="retro-label">배운 점</div>
+            <p class="retro-text">
+              MediaPipe의 내부 drawing_utils.py를 직접 수정하는 경험을 통해 오픈소스 라이브러리를
+              목적에 맞게 커스터마이징하는 역량을 키웠습니다. Python과 Arduino 간 시리얼 통신 설계,
+              PCA9685 PWM 드라이버를 통한 서보 모터 다중 제어 구조를 실전에서 깊이 이해했습니다.
+            </p>
+          </div>
+          <div class="retro-card">
+            <div class="retro-icon">🚀</div>
+            <div class="retro-label">다음 목표</div>
+            <p class="retro-text">
+              3D 프린트 부품을 내구성 있는 소재로 교체하고 하중 분석을 추가해 완성도를 높이고 싶습니다.
+              또한 얼굴 인식 알고리즘을 개선해 조명 변화와 안경 착용 상황에서도 안정적으로 동작하도록
+              고도화할 계획입니다.
             </p>
           </div>
         </div>
@@ -346,14 +368,17 @@
     </aside>
   </div>
 
-  <!-- 다음 프로젝트 -->
+  <!-- 프로젝트 네비게이션 -->
   <div class="next-section">
     <div class="next-inner">
       <div>
-        <p class="next-label">NEXT PROJECT</p>
-        <a href="project2.html" class="next-title">프로젝트 제목 02 →</a>
+        <p class="next-label">← PREV PROJECT</p>
+        <a href="project7.html" class="next-title">← AI 과실비율 판정 서비스</a>
       </div>
-      <a href="project2.html" class="next-arrow">→</a>
+      <div style="text-align: right;">
+        <p class="next-label">NEXT PROJECT</p>
+        <a href="project2.html" class="next-title">IoT 소리 감지 알림 시스템 →</a>
+      </div>
     </div>
   </div>
 
